@@ -952,7 +952,7 @@ NOTE: Due to a bug, in P(7) function returns an address belonging to page 1,
 e.g. &H7C60. It has to be adapted to the range &H0000 - &H4000, if it's gonna be
 used.
 
-P(8) returns the number of the last function called, but function 1 itself is 
+P(8) returns the number of the last function called, but function 1 itself is   
 not counted. So if you call, for example, functions 64, 3, 10, 1, 1, 1 in 
 sequence, you will obtain P(8)=10 at the end. A value of zero means that no 
 functions were called other than function 1 since NestorBASIC was installed.
@@ -967,7 +967,7 @@ Input:	 P(0) = Segment
 Output:  P(2) = The byte received
 
 
-* Function 3: Read a byte from a segment with address autoincrement
+* Function 3: Read a byte from a segment with address autoincrement             
 
 Input:	 P(0) = Segment
 	 P(1) = Address
@@ -981,7 +981,7 @@ Input:	 P(0) = Segment
 	 P(1) = Address
 Output:  P(2) = The integer received
 
-Low byte is read from address P(1), and high byte from address P(1)+1.
+Low byte is read from address P(1), and high byte from address P(1)+1.          
 
 
 * Function 5: Read an integer (2 bytes) from a segment
@@ -992,7 +992,7 @@ Input:	 P(0) = Segment
 Output:  P(2) = The integer received
 	 P(1) = P(1) + 2
 
-Low byte is read from address P(1), and high byte from address P(1)+1.
+Low byte is read from address P(1), and high byte from address P(1)+1.          
 
 
 * Function 6: Write a byte to a segment
@@ -1003,7 +1003,7 @@ Input:	 P(0) = Segment
 Output:  -
 
 
-* Function 7: Write a byte to a segment with address autoincrement
+* Function 7: Write a byte to a segment with address autoincrement              
 
 Input:	 P(0) = Segment
 	 P(1) = Address
@@ -1018,7 +1018,7 @@ Input:	 P(0) = Segment
 	 P(2) = Integer to be written
 Output:  -
 
-Low byte is written to address P(1), and high byte to address P(1)+1.
+Low byte is written to address P(1), and high byte to address P(1)+1.           
 
 
 * Function 9: Write an integer (2 bytes) to a segment
@@ -1029,7 +1029,7 @@ Input:	 P(0) = Segment
 	 P(2) = Integer to be written
 Output:  P(1) = P(1) + 2
 
-Low byte is written to address P(1), and high byte to address P(1)+1.
+Low byte is written to address P(1), and high byte to address P(1)+1.           
 
 
 * Function 10: Data block transfer between segments
@@ -1155,7 +1155,7 @@ Input	 P(0) = Source VRAM block
 Output:  P(1) = P(1) + P(4) if P(5)<>0
 	 P(2):P(3) = P(2):P(3) + P(4) if P(6)<>0
 
-P(3)+P(4) must be lower than &H4000, otherwise the result is unpredictable.
+P(3)+P(4) must be lower than &H4000, otherwise the result is unpredictable.     
 
 
 * Function 22: Data block transfer from RAM to VRAM
@@ -1171,7 +1171,7 @@ Output:  P(1) = P(1) + P(4) if P(5)<>0
 	 P(2):P(3) = P(2):P(3) + P(4) if P(6)<>0
 
 
-* Function 23: Data block tranfer between VRAM
+* Function 23: Data block tranfer within VRAM
 
 Input:	 P(0) = Source VRAM block
 	 P(1) = Source start address
@@ -1183,10 +1183,10 @@ Input:	 P(0) = Source VRAM block
 Output:  P(0):P(1) = P(0):P(1) + P(4) if P(5)<>0
 	 P(2):P(3) = P(2):P(3) + P(4) if P(6)<>0
 
-If P(4) is greatest than &H4000 only &H4000 bytes will be transferred, and 
-the addresses increment will be also limited to &H4000, but P(4) will not be 
-modified. Thus, for transferring largest blocks (up to 64K) in a easy way you 
-can do something like the following:
+If P(4) is greater than &H4000, only &H4000 bytes will be transferred, and the  
+addresses increments will be also limited to &H4000, but P(4) will not be 
+modified. Thus, to transfer larger blocks (up to 64K) in an easy way you 
+can do something like this:
 
 10 'P(0) to P(3) already set. Data block length set in L.
 20 P(5)=1:P(6)=1
