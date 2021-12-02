@@ -2,7 +2,7 @@ Version information file for NestorBASIC 1.xx
 By Nestor Soriano (Konami Man), December 2.004
 
 
-* Changes from NestorBASIC 1.11 to NestorBASIC 1.10
+* Changes from NestorBASIC 1.10 to NestorBASIC 1.11
 
 Internal changes:
 
