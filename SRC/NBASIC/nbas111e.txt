@@ -1228,7 +1228,7 @@ To fill an area larger than 16K, use the method described in function 23.
 * Function 26: Search for a file (S4)
 
 Input:	 F$(1) = Searching mask (empty string="*.*")
-	 P(0)  = 0 -> Seacrh for first mactching filename
+	 P(0)  = 0 -> Seacrh for first matching filename
 	 P(0)  = 1 -> Seacrh for next matching filename
 	 P(1)  = Search attributes: 2*H + 4*S + 8*V + 16*D
 		 H = 1 -> Include hidden files in the search
