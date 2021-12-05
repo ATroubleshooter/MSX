@@ -1175,3 +1175,61 @@ P(4), случится ошибка переполнения.
 
 Так как X-BASIC работает с вещественными переменными особым способом, то, если  
 применять этот прием внутри турбо-блока, L должно быть целым, кратным 256.
+
+* Функция 24: Заполнить область VRAM байтом
+
+Вход:	 P(0) = Блок VRAM
+	 P(1) = Начальный адрес
+	 P(2) = Записываемый байт
+	 P(3) = Длина области (максимум 16K)
+Выход:  -
+
+Чтобы заполнить область, размером больше 16Кб, используйте метод, описанный в   
+функции 23.
+
+* Функция 25: Заполнить область VRAM байтом с автоинкрементом адреса
+
+Вход:	 P(0) = Блок VRAM
+	 P(1) = Начальный адрес
+	 P(2) = Записываемый байт
+	 P(3) = Длина области (максимум 16K)
+Выход:   P(0):P(1) = P(0):P(1) + P(3)
+
+Чтобы заполнить область, размером больше 16Кб, используйте метод, описанный в   
+функции 23.
+
+10.5. ФУНКЦИИ ДЛЯ РАБОТЫ С ДИСКОМ
+
+* Функция 26: Поиск файла (S4)
+
+Вход:	 F$(1) = Маска поиска (пустая строка="*.*")
+	 P(0)  = 0 -> Поиск первого файла, соответствующего маске
+	 P(0)  = 1 -> Поиск следующих файлов
+	 P(1)  = Search attributes: 2*H + 4*S + 8*V + 16*D
+		 H = 1 -> Include hidden files in the search
+		 S = 1 -> Include system files in the search
+		 V = 1 -> Search only the volume label
+		 D = 1 -> Include subdirectories in the search
+Выход:   F$(0) = Found filename
+	 P(0)  = 1
+	 P(1)  = File attributes (always 0 under DOS 1):
+		 R + 2*H + 4*S + 8*V + 16*D + 32*A
+		 R = 1 -> Read only
+		 H = 1 -> Hidden
+		 S = 1 -> System
+		 V = 1 -> Volume label
+		 D = 1 -> Directory
+		 A = 1 -> Archive
+	 P(2)  = Hour of creation/last modification (0 to 23)
+	 P(3)  = Minute of creation/last modification (0 to 59)
+	 P(4)  = Day of creation/last modification (1 to 31)
+	 P(5)  = Month of creation/last modification (1 to 12)
+	 P(6)  = Year of creation/last modification (1980 to 2079)
+	 P(7)  = First cluster (2 to 4095)
+	 P(8)  = Logical drive (0=A:,...,7=H:)
+	 P(9)  = File length (lower part)
+	 P(10) = File length (higher part)
+	 P(11) = 0, if searching first no file is found
+		 1, if searching first a file is found
+		 P(11), if searching next no file is found
+		 P(11)+1, if searching next a file is found
