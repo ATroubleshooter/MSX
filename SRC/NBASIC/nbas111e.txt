@@ -1209,7 +1209,7 @@ Input:	 P(0) = VRAM block
 	 P(3) = Zone length (maximum 16K)
 Output:  -
 
-For fill a zone largest than 16K, use the method described in function 23.
+To fill an area larger than 16K, use the method described in function 23.
 
 
 * Function 25: Fill a VRAM zone with a byte with address autoincrement
@@ -1220,7 +1220,7 @@ Input:	 P(0) = VRAM block
 	 P(3) = Zone length (maximum 16K)
 Output:  P(0):P(1) = P(0):P(1) + P(3)
 
-For fill a zone largest than 16K, use the method described in function 23.
+To fill an area larger than 16K, use the method described in function 23.
 
 
 10.5. DISK ACCESS FUNCTIONS
