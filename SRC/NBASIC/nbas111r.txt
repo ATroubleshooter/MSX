@@ -1205,12 +1205,12 @@ P(4), случится ошибка переполнения.
 Вход:	 F$(1) = Маска поиска (пустая строка="*.*")
 	 P(0)  = 0 -> Поиск первого файла, соответствующего маске
 	 P(0)  = 1 -> Поиск следующих файлов
-	 P(1)  = Search attributes: 2*H + 4*S + 8*V + 16*D
-		 H = 1 -> Include hidden files in the search
-		 S = 1 -> Include system files in the search
-		 V = 1 -> Search only the volume label
-		 D = 1 -> Include subdirectories in the search
-Выход:   F$(0) = Found filename
+	 P(1)  = Атрибуты поиска: 2*H + 4*S + 8*V + 16*D
+		 H = 1 -> Включить скрытые файлы в поиск
+		 S = 1 -> Включить системные файлы в поиск
+		 V = 1 -> Искать только метку тома
+		 D = 1 -> Включить подкаталоги в поиск
+Выход:   F$(0) = Найденный файл
 	 P(0)  = 1
 	 P(1)  = File attributes (always 0 under DOS 1):
 		 R + 2*H + 4*S + 8*V + 16*D + 32*A
