@@ -1210,25 +1210,25 @@ P(4), случится ошибка переполнения.
 		 S = 1 -> Включить системные файлы в поиск
 		 V = 1 -> Искать только метку тома
 		 D = 1 -> Включить подкаталоги в поиск
-Выход:   F$(0) = Найденный файл
+Выход:   F$(0) = Имя найденного файла
 	 P(0)  = 1
-	 P(1)  = File attributes (always 0 under DOS 1):
+	 P(1)  = Атрибуты файла (всегда 0 под DOS 1):
 		 R + 2*H + 4*S + 8*V + 16*D + 32*A
-		 R = 1 -> Read only
-		 H = 1 -> Hidden
-		 S = 1 -> System
-		 V = 1 -> Volume label
-		 D = 1 -> Directory
-		 A = 1 -> Archive
-	 P(2)  = Hour of creation/last modification (0 to 23)
-	 P(3)  = Minute of creation/last modification (0 to 59)
-	 P(4)  = Day of creation/last modification (1 to 31)
-	 P(5)  = Month of creation/last modification (1 to 12)
-	 P(6)  = Year of creation/last modification (1980 to 2079)
-	 P(7)  = First cluster (2 to 4095)
-	 P(8)  = Logical drive (0=A:,...,7=H:)
-	 P(9)  = File length (lower part)
-	 P(10) = File length (higher part)
+		 R = 1 -> Только для чтения
+		 H = 1 -> Скрытый
+		 S = 1 -> Системный
+		 V = 1 -> Метка тома
+		 D = 1 -> Директория
+		 A = 1 -> Архивный
+	 P(2)  = Час создания/последней модификации (0 - 23)
+	 P(3)  = Минута создания/последней модификации (0 - 59)
+	 P(4)  = День создания/последней модификации (1 - 31)
+	 P(5)  = Месяц создания/последней модификации (1 - 12)
+	 P(6)  = Год создания/последней модификации (1980 - 2079)
+	 P(7)  = Первый кластер (2 - 4095)
+	 P(8)  = Логический диск (0=A:,...,7=H:)
+	 P(9)  = Длина файла (младшее слово)
+	 P(10) = Длина файла (старшее слово)
 	 P(11) = 0, if searching first no file is found
 		 1, if searching first a file is found
 		 P(11), if searching next no file is found
