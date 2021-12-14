@@ -1233,3 +1233,31 @@ P(4), случится ошибка переполнения.
 		 1, если при первоначальном поиске найден файл
 		 P(11), если при дальнейшем поиске ничего не найдено
 		 P(11)+1, если при дальнейшем поиске файл найден
+
+F$(1) может включать букву диска и, в случае DOS 2, путь; F$(0) 
+будет содержать только имя найденного файла.
+
+P(0) must be set to 0 to search the first filename matching the specified 
+mask, and must be left to 1 to search the following filenames. This is done 
+automatically by the function (P(0) is always set to 1). Besides, P(11) is 
+set to 1 when the first filename is searched (0 if none is found), and is 
+increased automatically in each successive search. Thus, to search all the 
+matching filenames you can use a loop like the following one:
+
+10 'Search of all the filenames in drive B: (default directory)
+20 F$(1)="B:":P(0)=0:P(1)=2+16 'Include directories and hidden files
+30 IF USR(26)<>0 THEN PRINT:PRINT"Total found:";P(11):END
+40 PRINT F$(0),CHR$(-ASC("h")*((P(1)AND2)<>0));
+	       CHR$(-ASC("d")*((P(1)AND16)<>0));
+	       CHR$(-ASC("a")*((P(1)AND32)<>0)):GOTO 30
+
+When there is no more matching files/directories remaining, the function will 
+return the "File not found" error. Under DOS 1, an error when searching the 
+first matching filename may also mean an invalid drive or filename 
+specification in the input mask (under DOS 2, these errors have its own error 
+code).
+
+To obtain the file length, use the expression P(9)+65536*P(10). When printing
+these lengths in the screen, remember that the numeric variables screen 
+representation is different for BASIC and TurboBASIC when the number is big; 
+therefore, it is better to print the file size in K: INT(P(9)/1024)+64*P(10).
