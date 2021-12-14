@@ -1254,10 +1254,10 @@ Output:  F$(0) = Found filename
 	 P(8)  = Logical drive (0=A:,...,7=H:)
 	 P(9)  = File length (lower part)
 	 P(10) = File length (higher part)
-	 P(11) = 0, if searching first no file is found
-		 1, if searching first a file is found
-		 P(11), if searching next no file is found
-		 P(11)+1, if searching next a file is found
+	 P(11) = 0, file not found as a result of primary search
+		 1, file is found as a result of primary search 
+		 P(11), file not found as a result of secondary search
+		 P(11)+1, file is found as a result of secondary search
 
 F$(1) can include a drive letter and, in the case of DOS 2, a pathname; F$(0) 
 will contain only the filename found.
