@@ -1237,7 +1237,7 @@ P(4), случится ошибка переполнения.
 F$(1) может включать букву диска и, в случае DOS 2, путь; F$(0) 
 будет содержать только имя найденного файла.
 
-P(0) must be set to 0 to search the first filename matching the specified 
+P(0) должен быть установлен в 0, чтобы искать первый файл, соответствующий маске             
 mask, and must be left to 1 to search the following filenames. This is done 
 automatically by the function (P(0) is always set to 1). Besides, P(11) is 
 set to 1 when the first filename is searched (0 if none is found), and is 
