@@ -1237,12 +1237,12 @@ P(4), случится ошибка переполнения.
 F$(1) может включать букву диска и, в случае DOS 2, путь; F$(0) 
 будет содержать только имя найденного файла.
 
-P(0) должен быть установлен в 0, чтобы искать первый файл, соответствующий маске             
-mask, and must be left to 1 to search the following filenames. This is done 
-automatically by the function (P(0) is always set to 1). Besides, P(11) is 
-set to 1 when the first filename is searched (0 if none is found), and is 
-increased automatically in each successive search. Thus, to search all the 
-matching filenames you can use a loop like the following one:
+P(0) должен быть установлен в 0, чтобы искать первое встретившееся совпадение с 
+заданной маской, и оставлен равным 1, чтобы искать следующие файлы. Это то, что
+функция делает автоматически (всегда устанавливает P(0) в 1). Кроме того, P(11)
+устанавливается в 1 при первоначальном поиске файла (0 если ничего не найдено),
+и инкрементируется автоматически на каждой последующей итерации. Поэтому, чтобы
+найти соответствующие маске файлы, можно использовать цикл вроде этого:
 
 10 'Search of all the filenames in drive B: (default directory)
 20 F$(1)="B:":P(0)=0:P(1)=2+16 'Include directories and hidden files
