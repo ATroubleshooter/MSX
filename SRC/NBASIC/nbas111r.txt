@@ -1251,13 +1251,12 @@ P(0) должен быть установлен в 0, чтобы искать п
 	       CHR$(-ASC("d")*((P(1)AND16)<>0));
 	       CHR$(-ASC("a")*((P(1)AND32)<>0)):GOTO 30
 
-When there is no more matching files/directories remaining, the function will 
-return the "File not found" error. Under DOS 1, an error when searching the 
-first matching filename may also mean an invalid drive or filename 
-specification in the input mask (under DOS 2, these errors have its own error 
-code).
+Если больше не осталось совпадающих с маской файлов/директорий, функция вернет  
+ошибку "Файл не найден". Под DOS 1, ошибка при поиске первого файла может
+означать также, что диск не существует или имя файла задано некорректно
+(под DOS 2 эти ошибки имеют свой собственный код).
 
-To obtain the file length, use the expression P(9)+65536*P(10). When printing
-these lengths in the screen, remember that the numeric variables screen 
-representation is different for BASIC and TurboBASIC when the number is big; 
-therefore, it is better to print the file size in K: INT(P(9)/1024)+64*P(10).
+Чтобы получить длину файла, можно использовать формулу P(9)+65536*P(10). При
+выводе на экран этих длин, помните, что представление числовых переменных 
+различается в MSX-BASIC и X-BASIC для больших чисел; лучше всего отображать 
+размер файлов сразу в килобайтах: INT(P(9)/1024)+64*P(10).
