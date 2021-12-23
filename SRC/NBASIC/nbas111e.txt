@@ -9,7 +9,7 @@ It is intended for being used within MSX-BASIC programs. Without losing
 Turbo-BASIC compatibility, NestorBASIC gives you the following capabilities:
 
 - Full access to all the available memory of the computer (all existing memory  
-  in case of DOS 1, all free memory in the case of DOS 2), up to 4 Mb.
+  in case of DOS 1, all free memory in case of DOS 2), up to 4 Mb.
 - Access to all VRAM, with data block exchange within VRAM and between RAM and 
   VRAM feature.
 - Storing BASIC programs in the mapped RAM, with the capability to jump
@@ -1400,8 +1400,8 @@ that the end of the file has been reached.
 
 If the end of the file is reached before having read P(4) bytes an error will 
 be returned; to obtain the number of read bytes look at P(7). If no error is 
-returned, P(7) will have the same value as P(4); in the case of a physical 
-error (bad FAT, physical disk error or disk offline), P(7) will always be 0.
+returned, P(7) will have the same value as P(4); in case of a physical error
+(bad FAT, physical disk error or disk offline), P(7) will always be 0.
 
 
 * Function 34: Read from a file to VRAM (S4)
