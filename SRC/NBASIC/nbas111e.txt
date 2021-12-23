@@ -1394,7 +1394,7 @@ pointer is automatically increased after the read. To examinate or modify
 a file pointer, use function 42.
 
 To read till the end of the file, or to read the whole file if it is shorter 
-that 16K, just try to read 16K (set P(4)=&H4000), and ignore the returned 
+than 16K, just try to read 16K (set P(4)=&H4000), and ignore the returned 
 error if it is 1 or 199: for this function, these errors mean only 
 that the end of the file has been reached.
 
