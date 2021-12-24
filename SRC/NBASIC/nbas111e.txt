@@ -1431,7 +1431,7 @@ Input:	 P(0) = Drive (0=A:,...,7=H:)
 	 P(3) = Destination start address
 	 P(4) = Number of sectors to read (maximum 32)
 	 P(6) = Increase P(3) if <>0
-Output:  P(7) = P(4)*512 (0 in error condition)
+Output:  P(7) = P(4)*512 (0 in case of error)
 	 P(3) = P(3)+P(4)*512 if P(6)<>0
 
 P(3)+P(4)*512 must be lower than &H4000, otherwise the result is 
