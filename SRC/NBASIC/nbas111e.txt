@@ -1390,7 +1390,7 @@ Output:  P(7) = Number of bytes actually read
 P(3)+P(4) must be lowest than &H4000, otherwise the result is unpredictable.
 
 The file is read from the position indicated by its file pointer; this 
-pointer is automatically increased after the read. To examinate or modify 
+pointer is automatically increased after the read. To examine or modify 
 a file pointer, use function 42.
 
 To read till the end of the file, or to read the whole file if it is shorter 
@@ -1470,14 +1470,14 @@ Input:	 P(0) = File number
 	 P(4) = Number of bytes to be written
 	 P(6) = Increase P(3) if <>0
 Output:  P(7) = Number of bytes actually written
-	 P(3) = P(3)+P(4) si P(6)<>0
+	 P(3) = P(3)+P(4) if P(6)<>0
 
 P(3)+P(4) must be lower than &H4000, otherwise the data written to the file 
 is unpredictable.
 
 Data is written to the file from the position indicated by its file pointer; 
-this pointer is automatically increased after the writing. For examinate or 
-modify a file pointer use function 42. In the case of a physical error (bad 
+this pointer is automatically increased after the writing. To examine or
+modify a file pointer use function 42. In case of a physical error (bad 
 FAT, physical disk error or disk offline) P(7) will always be 0.
 
 
