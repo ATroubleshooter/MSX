@@ -1451,7 +1451,7 @@ Input:	 P(0) = Drive (0=A:,...,7=H:)
 	 P(3) = Destination begin address
 	 P(4) = Number of sectors to read (maximum 32)
 	 P(6) = Increase P(3) if <>0
-Output:  P(7) = P(4)*512 (0 in error condition)
+Output:  P(7) = P(4)*512 (0 in case of error)
 	 P(3) = P(3)+P(4)*512 if P(6)<>0
 
 If P(4) is greater than 32 only 32 sectors (&H4000 bytes) will be read, and 
@@ -1473,10 +1473,10 @@ Output:  P(7) = Number of bytes actually written
 	 P(3) = P(3)+P(4) if P(6)<>0
 
 P(3)+P(4) must be lower than &H4000, otherwise the data written to the file 
-is unpredictable.
+will be unpredictable.
 
 Data is written to the file from the position indicated by its file pointer; 
-this pointer is automatically increased after the writing. To examine or
+this pointer is automatically increased after writing. To examine or
 modify a file pointer use function 42. In case of a physical error (bad 
 FAT, physical disk error or disk offline) P(7) will always be 0.
 
@@ -1491,7 +1491,7 @@ Input:	 P(0) = File number
 Output:  P(7) = Number of bytes actually written
 	 P(2):P(3) = P(2):P(3)+P(4) if P(6)<>0
 
-If P(4) is greater than &H4000, only &H4000 bytes will be written, and the 
+If P(4) is greater than &H4000, only &H4000 bytes will be written, and the      
 address increment will also be limited to &H4000, but P(4) will not be 
 modified. Thus, to write larger blocks (up to 64K) you can use the method 
 described in function 23.
@@ -1507,14 +1507,14 @@ Input:	 P(0) = Drive (0=A:,...,7=H:)
 	 P(3) = Source start address
 	 P(4) = Number of sectors to be written (maximum 32)
 	 P(6) = Increase P(3) if <>0
-Output:  P(7) = P(4)*512 (0 in error condition)
+Output:  P(7) = P(4)*512 (0 in case of error)
 	 P(3) = P(3)+P(4)*512 if P(6)<>0
 
-P(3)+P(4)*512 must be lowest than &H4000, otherwise the written data is 
-unpredictable.
+P(3)+P(4)*512 must be lower than &H4000, otherwise the data written to the file 
+will be unpredictable.
 
-This function does not supports partial writes: if there is no error, P(7) 
-will return the number of written bytes, that is, P(4)*512; but in case of 
+This function does not supports partial writes: if there is no error, P(7)      
+will contain the number of written bytes, that is, P(4)*512; but in case of 
 error P(7) will be always 0. If P(6)<>0, P(3) will be increased by the number 
 of written bytes (P(7) or 0).
 
@@ -1527,12 +1527,12 @@ Input:	 P(0) = Drive (0=A:,...,7=H:)
 	 P(3) = Source start address
 	 P(4) = Number of sectors to be written (maximum 32)
 	 P(6) = Increase P(3) if <>0
-Output:  P(7) = P(4)*512 (0 in error condition)
-	 P(3) = P(3)+P(4)*512 si P(6)<>0
+Output:  P(7) = P(4)*512 (0 in case of error)
+	 P(3) = P(3)+P(4)*512 if P(6)<>0
 
-If P(4) is greatest than 32 only 32 sectors (&H4000 bytes) will be written, 
+If P(4) is greater than 32, only 32 sectors (&H4000 bytes) will be written,     
 and the address increment will also be limited to &H4000, but P(4) will not 
-be modified. Thus, to write largest blocks (up to 64K) you can use the method 
+be modified. Thus, to write larger blocks (up to 64K) you can use the method 
 described in function 23.
 
 See function 39 for an explanation about the value returned in P(7).
