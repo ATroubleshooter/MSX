@@ -1579,7 +1579,7 @@ To obtain the current file pointer position, just use this function with
 P(1)=1, P(2)=0 and P(3)=0; to obtain the file length, use it with P(1)=2, 
 P(2)=0 and P(3)=0. In the first case the file pointer remains unmodified.
 
-Rememeber that the offset is interpreted as a signed number. Therefore, when 
+Remember that the offset is interpreted as a signed number. Therefore, when 
 using this function note with the following:
 
 - If you use this function with P(1)=0, the offset must be positive. 
