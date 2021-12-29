@@ -1562,8 +1562,8 @@ Input:	 P(0) = File number
 Output:  P(4) = New file pointer position (lower part)
 	 P(5) = New file pointer position (higher part)
 
-TO set P(2) and P(3) with an offset D greater than 32768 or lower than 
-0 you must use the followin formula:
+To set P(2) and P(3) with an offset D greater than 32768 or lower than 
+0 you must use the following formula:
 
 P(3)=INT(D/65536):P(2)=VAL("&H"+HEX$(D-(P2*65536)))
 
