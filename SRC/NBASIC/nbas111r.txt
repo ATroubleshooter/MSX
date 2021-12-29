@@ -1535,23 +1535,24 @@ P=P(4)-(65536*(P(4)<0))+65536!*P(5)
 Так как X-BASIC работает с вещественными переменными особым способом, то, если  
 применять этот прием внутри турбо-блока, D должно быть целым, кратным 256. 
 
-Чтобы узнать текущую позицию файлового указателя, just use this function with 
-P(1)=1, P(2)=0 and P(3)=0; to obtain the file length, use it with P(1)=2, 
-P(2)=0 and P(3)=0. In the first case the file pointer remains unmodified.
+Чтобы узнать текущую позицию файлового указателя, просто используйте эту функцию
+с параметрами P(1)=1, P(2)=0 и P(3)=0; чтобы узнать длину файла, вызовите её с
+параметрами P(1)=2, P(2)=0 и P(3)=0. В первом случае указатель файла остается
+неизменным.
 
-Rememeber that the offset is interpreted as a signed number. Therefore, when 
-using this function note with the following:
+При использовании данной функции, помните, что смещение интерпретируется со
+знаком. Поэтому:
 
-- If you use this function with P(1)=0, the offset must be positive. 
-Otherwise, further access to the file will have unpredictable results.
+- Если Вы вызываете функцию с P(1)=0, смещение должно быть положительным. 
+Иначе, при последующем доступе к файлу, результат будет непредсказуемым.
 
-- If you use this function with P(1)=1, a positive offset will cause the file 
-pointer to advance; a negative offset will cause the file pointer to move 
-back.
+- Если Вы вызываете функцию с P(1)=1, положительное смещение передвинет файловый
+указатель вперед; отрицательное смещение передвинет файловый указатель назад.
 
-- If you use this function with P(1)=2, the offset should normally be 
-negative; otherwise, the file pointer will be placed beyond the file length. 
-In this case, a further read of the file will cause an "End of file" error (0 
-bytes will be read), and a write to the file will cause the space between the 
-end of the file and the position indicated by the file pointer to be filled 
-with zeros.
+- Если Вы вызываете функцию с P(1)=2, смещение должно быть отрицательным;       
+в противном случае, файловый указатель будет помещён за концом файла. 
+В таком случае, дальнейшее чтение файла вызовет ошибку "End of file" (будет  
+прочитано 0 байт), а запись в файл приведет к тому, что пространство между
+концом файла и указателем будет заполнено нулями.
+
+
