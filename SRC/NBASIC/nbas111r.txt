@@ -1550,9 +1550,19 @@ P=P(4)-(65536*(P(4)<0))+65536!*P(5)
 указатель вперед; отрицательное смещение передвинет файловый указатель назад.
 
 - Если Вы вызываете функцию с P(1)=2, смещение должно быть отрицательным;       
-в противном случае, файловый указатель будет помещён за концом файла. 
+в противном случае, файловый указатель будет помещён после конца файла. 
 В таком случае, дальнейшее чтение файла вызовет ошибку "End of file" (будет  
 прочитано 0 байт), а запись в файл приведет к тому, что пространство между
 концом файла и указателем будет заполнено нулями.
 
+* Функция 43: Obtain the default drive and the available drives vector
 
+Вход:	 -
+Выход:   P(0) = Default drive (0=A:,...,7=H:)
+	 P(1) = Available drives vector
+
+The available drives vector is a byte that contains, in each bit, information 
+about the existence of each drive letter (bit=1: exists, bit=0: does not 
+exist); the lower bit refers to drive A: and the upper bit refers to drive 
+H:. For example, if the function returns P(1)=&B01000011, then the available 
+drives are A:, B: and G:.
