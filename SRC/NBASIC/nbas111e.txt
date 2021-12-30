@@ -1565,7 +1565,7 @@ Output:  P(4) = New file pointer position (lower part)
 To set P(2) and P(3) with an offset D greater than 32768 or lower than 
 0 you must use the following formula:
 
-P(3)=INT(D/65536):P(2)=VAL("&H"+HEX$(D-(P2*65536)))
+P(3)=INT(D/65536):P(2)=VAL("&H"+HEX$(D-(P(2)*65536)))
 
 and to obtain the new pointer P:
 
