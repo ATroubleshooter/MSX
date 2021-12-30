@@ -1597,10 +1597,10 @@ end of the file and the position indicated by the file pointer to be filled
 with zeros.
 
 
-* Function 43: Obtain the default drive and the available drives vector
+* Function 43: Get current working drive and the available drives vector
 
 Input:	 -
-Output:  P(0) = Default drive (0=A:,...,7=H:)
+Output:  P(0) = Current drive (0=A:,...,7=H:)
 	 P(1) = Available drives vector
 
 The available drives vector is a byte that contains, in each bit, information 
