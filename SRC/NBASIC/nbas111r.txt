@@ -1555,14 +1555,13 @@ P=P(4)-(65536*(P(4)<0))+65536!*P(5)
 прочитано 0 байт), а запись в файл приведет к тому, что пространство между
 концом файла и указателем будет заполнено нулями.
 
-* Функция 43: Obtain the default drive and the available drives vector
+* Функция 43: Узнать текущий диск и вектор доступных дисков (login vector)
 
 Вход:	 -
-Выход:   P(0) = Default drive (0=A:,...,7=H:)
-	 P(1) = Available drives vector
+Выход:   P(0) = Текущий диск (0=A:,...,7=H:)
+	 P(1) = Вектор доступных дисков
 
-The available drives vector is a byte that contains, in each bit, information 
-about the existence of each drive letter (bit=1: exists, bit=0: does not 
-exist); the lower bit refers to drive A: and the upper bit refers to drive 
-H:. For example, if the function returns P(1)=&B01000011, then the available 
-drives are A:, B: and G:.
+Вектор доступных дисков это байт, который содержит, в каждом бите, информацию
+о наличии или отсутствии (бит=1: присутствует, bit=0: отсутствует); младший бит
+соответствует диску A: а старший - диску H:. Например, если функция возвращает
+P(1)=&B01000011, значит присутствуют диски A:, B: и G:.
