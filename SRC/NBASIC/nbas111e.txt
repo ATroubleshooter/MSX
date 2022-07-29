@@ -2597,7 +2597,7 @@ samplekit is successfully loaded, P(6):P(7) will contain the wavekit size
 (same as the file size if you just load a .MWK file).
 
 
-10.10. FUNCTIONS TO DESIGNATE THE NUMBER OF RAM SEGMENTS USED BY NESTORBASIC
+10.10. FUNCTIONS TO DESIGNATE THE NUMBER OF RAM SEGMENTS BE USED BY NESTORBASIC 
 
 * Function 80: Obtain and set the number of segments
 	       allocated for NestorBASIC
