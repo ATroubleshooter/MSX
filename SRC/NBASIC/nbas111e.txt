@@ -28,8 +28,8 @@ Turbo-BASIC compatibility, NestorBASIC gives you the following capabilities:
 
 All of these functions are available through a single USR and an integer        
 parameter array, therefore they are fully TurboBASIC compatible. In fact,
-the TurboBASIC compiler itself is included into the NestorBASIC file, and it
-gets automatically loaded when NestorBASIC is run.
+the TurboBASIC compiler itself is incorporated into NBASIC binary,
+and it gets automatically loaded during NestorBASIC startup process.
 
 NestorBASIC is loaded in a RAM segment hidden to BASIC, so only a small amount  
 of MSX-BASIC main RAM (aprox. 500 bytes) is needed for a jump routine.
@@ -269,7 +269,7 @@ example to exchange data between any segment and a BASIC variable or array:
 3.4. SEGMENTS MAP
 
 As a summary of this section, here is a list of available segments and          
-its descriptions. S is the number of present segments, returned by NestorBASIC 
+its descriptions. S is the number of segments detected, returned by NestorBASIC 
 upon its launch, or when function 1 is called.
 
 0: NestorBASIC segment
@@ -2380,7 +2380,7 @@ Output:  P(0) = -1 if a music is being played or is paused
 	 P(10)= -1 if a MSX-AUDIO was detected
 	 P(11)= -1 if a OPL4 was detected
 	 P(12)= -1 if the player is initialized
-	 P(13)= The player present (only if P(12)=-1):
+	 P(13)= The player currently present (only if P(12)=-1):
 		0: Moonblaster 1.4
 		1: Moonblaster Wave 1.05
 	 F$(0)= Songname (empty string if no music is being played)
@@ -2597,7 +2597,7 @@ samplekit is successfully loaded, P(6):P(7) will contain the wavekit size
 (same as the file size if you just load a .MWK file).
 
 
-10.10. FUNCTIONS TO DESIGNATE THE NUMBER OF RAM SEGMENTS USED BY NBASIC
+10.10. FUNCTIONS TO DESIGNATE THE NUMBER OF RAM SEGMENTS USED BY NESTORBASIC
 
 * Function 80: Obtain and set the number of segments
 	       allocated for NestorBASIC
@@ -2615,10 +2615,10 @@ Output:  P(0) = Number of segments allocated for NestorBASIC
 This function works both in DOS 1 and DOS 2, however it is intended for being 
 used in DOS 2.
 
-Under DOS 2, on the NestorBASIC startup, it allocates for itself all DOS2
-free segments present on system, up to 247. This implies that there will be no
-free segments remained for the other resident programs that perform segment
-allocation too, like the DOS 2 RAM disk, NestorMan or InterNestor Suite. 
+Under DOS 2, on the NestorBASIC startup, it allocates itself all the unallocated
+segments on the system, up to 247. This implies that there will be no
+free segments remained for other resident programs that perform segment
+allocation too, like DOS 2 RAM disk, NestorMan or InterNestor Suite. 
 To solve this problem, use this function to let NestorBASIC know how many 
 segments we really need; the other segments will be freed and therefore will 
 become available for other programs. For example, if you're going to use the
@@ -2628,29 +2628,29 @@ extra data segment would be number 6.
 
 If a number of segments less than 6 is specified in P(0), NestorBASIC will 
 allocate 5 segments (see section 2), or 6 if a music player has been 
-installed. If a number of segments higher than the total number of available 
+loaded. If a number of segments higher than the total number of available 
 segments is specified, then as much segments as possible will be allocated 
 (up to 247), and P(0) will return the number of segments that have been 
 actually allocated. Whatever finally happens, this function will never return 
 error.
 
 Under DOS 1, this function just modifies some NestorBASIC internal variables; 
-the value returned in P(1) is fixed and it is computed at NestorBASIC 
-installation time. Under DOS 2, contrarywise, actual segment allocations or 
-freeings are performed using DOS 2 mapper support routines; in this case, the 
-value returned in P(1) is re-computed on each execution of the function, and 
+the value returned in P(1) is fixed and it is computed upon the start of
+NestorBASIC. Under DOS 2, contrarywise, the actual segments allocation or 
+deallocation is performed using DOS 2 mapper support routines; in this case, the 
+value returned in P(1) is re-computed each time you call the function, and 
 depends on how many segments have been allocated by other resident programs. 
 
 
 10.11. FUNCTIONS FOR NESTORMAN AND INTERNESTOR SUITE/LITE INTERACTION
 
-* Function 81: Obtain information about NestorMan
-	       and InterNestor Suite availability
+* Function 81: Check the presence of NestorMan
+	       and InterNestor Suite in RAM
 
 Input:   -
-Output:  P(0) = 0 if NestorMan is not installed
-                1 if NestorMan is installed
-                3 if NestorMan and InterNestor Suite are installed
+Output:  P(0) = 0 if NestorMan is not resident
+                1 if NestorMan is resident
+                3 if both NestorMan and InterNestor Suite are resident
          P(1) = NestorMan segment of InterNestor Suite level 1 module
          P(2) = NestorMan segment of InterNestor Suite level 2 module
          P(3) = NestorMan segment of InterNestor Suite level 3 module
@@ -2692,7 +2692,7 @@ therefore equivalent to the execution of function 58 having established
 previously P(1)=&HFFCA, P(3)=Function+256*B, and P(4)=&H2202.
 
 An error code -1 will be returned by this function if NestorMan is not 
-installed. Note however that it does not check if the specified function does 
+resident. Note however that it does not check if the specified function does 
 really exist in NestorMan.
 
 See also the function 58 description for considerations about the output 
@@ -2781,7 +2781,7 @@ numbers of the modules using function 81, and then use any of the techniques
 described in section 9.2 for exchanging data between NetorBASIC and 
 NestorMan.
 
-This function will return an error -1 if InterNestor Suite is not installed, 
+This function will return an error -1 if InterNestor Suite is not resident, 
 or if an invalid module number is passed on P(0).
 
 See also the function 58 description for considerations about the output 
@@ -2813,26 +2813,26 @@ Lite. P(1) must contain the address of any of the InterNestor Lite routines
 listed in its programmer's manual, otherwise the results of executing this 
 function are unpredictable.
 
-This function will return an error -1 if InterNestor Lite is not installed. 
-To know in advance whether InterNestor Lite is installed or not, use the 
-following code, which performs the detection method described in section 9.4:
+This function will return an error -1 if InterNestor Lite is not resident. 
+To know in advance whether InterNestor Lite is running or not, use the 
+following code, which exploits the detection method described in section 9.4:
 
 P(0)=0: P(1)=&HFFCA: P(2)=0: P(4)=&H2203: E=USR(58):
-IF P(12)=0 THEN ... (not installed)
+IF P(12)=0 THEN ... (not present)
 
 In section 9.4 there is a comment about the use of the InterNestor Lite 
 routines that perform data exchange with TPA from NestorBASIC. See also the 
 function 58 description for considerations about the output values of P(12) 
 to P(14).
 
-The following sample program shows the installed InterNestor Lite version 
-number.
+The following sample program dispays the currently running InterNestor Lite 
+version number.
 
 10 BLOAD"nbasic.bin",R
 20 IF P(0)<5 AND P(0)<>3 THEN PRINT "Error "+P(0):END
-30 '* Check that INL is installed
+30 '* Check the presence of INL
 40 P(0)=0: P(1)=&HFFCA: P(2)=0: P(4)=&H2203: E=USR(58): IF P(12)=0 THEN
-   PRINT "InterNestor Lite is not installed.":GOTO 100
+   PRINT "InterNestor Lite is not present.":GOTO 100
 50 '* The VERS_PAUSE routine(&H402A) returns the INL version in C.D.E
       and the implementation number in B, it must be called with A=0
 60 P(1)=&H402A:P(2)=0:E=USR(86)
@@ -2840,8 +2840,8 @@ number.
 80 X=P(4):GOSUB 1000:RD=X '* D register
 90 PRINT "InterNestor Lite version " ; P(3) AND &HFF ; "."
    ; RD ; "." ; P(4) AND &HFF ; ", implementation "
-   ; RB ; " is installed."
-100 '* Uninstalls NestorBASIC and finishes
+   ; RB ; " is present."
+100 '* Unloads NestorBASIC and finishes
 110 P(0)=1:E=USR(0):END
 1000 '* This subroutine extracts the high byte of X
 1010 X=((X AND &HFF00)/256) AND &HFF
@@ -2860,7 +2860,7 @@ functions are: 0, 26-28, 30, 33-41, 55-57, 71, 78, and 79.
 
 --- General functions
 
-* Function 0: NestorBASIC uninstallation (S4)
+* Function 0: NestorBASIC resident removal (S4)
 * Function 1: General information about NestorBASIC and about a segment
 
 --- RAM access functions
@@ -2961,7 +2961,7 @@ functions are: 0, 26-28, 30, 33-41, 55-57, 71, 78, and 79.
 
 --- Moonblaster music playback
 
-* Function 71: Load and initialization, or uninstall,
+* Function 71: Loading and initialization or removal
 	       of the Moonblaster player (S4)
 * Function 72: Obtain information about the music being played
 * Function 73: Activation and deactivation of the sound chips
@@ -3029,8 +3029,8 @@ The contents of the table is as follows:
 Pointer to the segments table. The format of this table is as follows:
 
 -2: Maximum number of segments that can be allocated for NestorBASIC
-    (always valid under DOS 1; under DOS 2 this value is valid
-     immediately after NestorBASIC installation, but may vary later)
+    (always valid under DOS 1; under DOS 2 this value is consistent
+     right after NestorBASIC startup, but may become irrelevant later)
 -1: Number of available RAM segments (same as P(0) returned by
     functions 1 and 80)
 +0: Slot of the logical segment 0
