@@ -1,12 +1,12 @@
 ﻿## What is NestorBASIC? ##
 
-NestorBASIC is a set of machine code routines, integrated in a single file. It is intended for being used within MSX-BASIC programs. Without losing Turbo-BASIC compatibility, NestorBASIC gives you the following capabilities:
+NestorBASIC is a set of machine code routines, integrated in a single file. It is intended to be used in MSX-BASIC programs. Without losing Turbo-BASIC compatibility, NestorBASIC gives you the following capabilities:
 
-- Full access to all te available memory of the computer (all existing memory in the case of DOS 1, all free memory in the case of DOS 2), up to 4 Mb.
-- Access to VRAM, with data block exchange between VRAM and between RAM and VRAM feature.
-- Storage of BASIC programs in the mapped RAM, which can be executed without losing the existing variables.
+- Full access to all the available memory of the computer (all existing memory in the case of DOS 1, all free memory in the case of DOS 2), up to 4 Mb.
+- Access to VRAM, with data block exchange within VRAM and between RAM and VRAM.
+- Storing the BASIC programs in banked RAM, and executing them without loss of any existing variables.
 - Access to disk files and direct access to physical sectors, with read/write to RAM/VRAM feature. File search, directory management. 
-- Graphic compression and decompression.
+- Graphics compression and decompression.
 - Moonblaster music playback. Samplekit loading.
 - PSG sound effects playback.
 - Execution of machine code routines placed on BIOS, SUB-BIOS, normal BASIC memory, system work area, or a mapped RAM segment.
@@ -19,6 +19,6 @@ NestorBASIC is loaded in a RAM segment not used by BASIC, so only a small amount
 
 ## How to build ##
 
-Compile NBASIC.ASM (with the Compass assembler), then concatenate the result with NBASIC.DAT. The `CONCA.BTM` script will do the job (needs COMMAND2.COM v24x).
+Compile NBASIC.ASM (with Compass assembler), then concatenate the result with NBASIC.DAT. The `CONCA.BTM` script will do the job (needs COMMAND2.COM v24x).
 
 Do not use the `CONCMUS.BTM` script. It refers to NWAVE.BIN, the MoonBlaster for MoonSound player adapted for NestorBASIC, whose sources were lost in a hard disk crash. The NBASIC.DAT file is a concatenation of the XBASIC ROM and the OPLL and OPL4 players.
