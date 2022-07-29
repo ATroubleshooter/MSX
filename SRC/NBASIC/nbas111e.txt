@@ -935,8 +935,8 @@ the results returned in P(0) to P(10) will be valid.
 The number returned in P(0) by this function is the same as the number          
 returned in P(0) by function 80; that is, it is the number of segments 
 allocated by NestorBASIC. By default (if function 80 has not yet been called 
-since the start of NestorBASIC), NestorBASIC allocates itself all the 
-available RAM segments (up to 247) on startup.
+since the startup of NestorBASIC), NestorBASIC allocates itself all the 
+available RAM segments (up to 247) when gets started.
 
 F$(0) will be just a drive letter and a colon under DOS 1 (for example "A:"),   
 and a drive+directory finished with "\" under DOS 2 (for example 
@@ -2183,8 +2183,8 @@ Output:  P(0) = -1 if any interrupt process is active
 	 P(1) = -1 if an user defined interrupt is active
 	 P(2) = User defined interrupt segment
 	 P(3) = User defined interrupt begin address
-	 P(4) = -1 if a PSG sound effect is being played
-	 P(5) = -1 if a music is being played
+	 P(4) = -1 if PSG sound effect is being played
+	 P(5) = -1 if music is being played
 
 P(2) and P(3) will return the user interrupt definition, even if it is 
 stopped. If no user interrupt has never been defined, both results will be 
@@ -2357,42 +2357,42 @@ player when no player is actually loaded, the function will do nothing,
 and no error will be returned.
 
 You can load, remove, and load again the Moonblaster player as many 
-times as necessary within a program's lifetime. If there is a player loaded,
-it can be easily removed to be replaced by another one, which is quite
-convenient.
+times as necessary during the program execution. If there's a player already
+loaded, it can be easily removed to be replaced by another one, which is
+quite convenient.
 
 
 * Function 72: Obtain information about the music being played
 
 Input:	 -
-Output:  P(0) = -1 if a music is being played or is paused
-	 P(1) = -1 if a Moonblaster 1.4 music is being played or paused
-	 P(2) = -1 if a Moonblaster Wave music is being played or paused
+Output:  P(0) = -1 if a tune is being played or paused
+	 P(1) = -1 if a Moonblaster 1.4 tune is being played or paused
+	 P(2) = -1 if a Moonblaster Wave tune is being played or paused
 	 P(3) = 0
-	 P(4) = -1 if the music is paused
-	 P(5) = Segment of the music being played,
-		or segment of the last played music
-	 P(6) = Begin address of the music being played,
-		or begin address of the last played music
+	 P(4) = -1 if the tune is paused
+	 P(5) = Segment of the tune being played,
+		or segment of the last played tune
+	 P(6) = Starting address of the tune being played,
+		or starting address of the tune played last
 	 P(7) = Current position
 	 P(8) = Current step (0 to 15)
-	 P(9) = -1 if a MSX-MUSIC was detected
-	 P(10)= -1 if a MSX-AUDIO was detected
-	 P(11)= -1 if a OPL4 was detected
+	 P(9) = -1 if MSX-MUSIC was detected
+	 P(10)= -1 if MSX-AUDIO was detected
+	 P(11)= -1 if OPL4 was detected
 	 P(12)= -1 if the player is initialized
-	 P(13)= The player currently present (only if P(12)=-1):
+	 P(13)= The player presently loaded (only if P(12)=-1):
 		0: Moonblaster 1.4
 		1: Moonblaster Wave 1.05
-	 F$(0)= Songname (empty string if no music is being played)
-	 F$(1)= Samplekit or wavekit (empty string if no music is being
+	 F$(0)= Tune name (empty string if no tune being played)
+	 F$(1)= Samplekit or wavekit name (empty string if no tune is being
 		played)
 
-If no Moonblaster player is loaded, P(12) will be zero the other results 
-will not be set (except for P(9) to P(11); the function will not return any 
+If there's no Moonblaster player loaded, P(12) will be zero, the other results 
+will not be set (except for P(9) to P(11)); the function will not return any 
 error. Use function 71 to initialize the player.
 
-If no music is being played, P(5) and P(6) will return the position and the 
-step in which the last played music was stopped, and F$(0) and F$(1) will 
+If no tune is being played, P(5) and P(6) will return the position and the 
+step where the last played tune was stopped, and F$(0) and F$(1) will 
 be empty strings. Otherwise, F$(0) will return the songname (always 40 
 characters for Moonblaster 1.4 musics, 50 for Moonblaster Wave musics) and 
 F$(1) will return the samplekit or wavekit that was loaded in Moonblaster 
@@ -2433,8 +2433,8 @@ Output:  P(4) = 0 -> MSX-MUSIC not found
 
 This function allows to disable and enable MSX-MUSIC, MSX-AUDIO and OPL4, 
 which in such state will not be used, even if they are found in the system. 
-This feature can be useful, for example, for earing only the MSX-AUDIO part 
-of a music in a computer with internal MSX-MUSIC.
+This feature can be useful, for example, for hearing only the MSX-AUDIO part 
+of the tune in a computer with internal MSX-MUSIC.
 
 If P(0)=0, the function will only return information about the enabled sound 
 chips in P(4) to P(5), and will not change the current status of the chips. 
@@ -2446,7 +2446,7 @@ If P(0)=1, the different sound chips will be enabled or disabled according to
 the values passed in P(1) to P(3); attempts to enable chips that are not 
 present will be ignored. If MSX-AUDIO and MSX-MUSIC are both disabled 
 (Moonblaster 1.4 player) or if OPL4 is disabled (Moonblaster Wave 
-player), function 74 (start the playing of a music) will do nothing but 
+player), function 74 (start the playback of a tune) will do nothing but 
 will not return error.
 
 The changes done with this function will have not effect until the currently 
@@ -2518,7 +2518,7 @@ parameter is invalid, an error code 7 will be returned.
 Input:	 P(0) = 0      -> Request for information only
 		-1     -> Pause fade out
 		1..254 -> Start/continue fade out with the specified delay
-Output:  P(1) = -1 if a music is being faded
+Output:  P(1) = -1 if tune is being faded
 	 P(2) = Current fade delay (-1 if the fade is paused)
 
 This function begins to fade out the music being played. The delay means 
@@ -2537,15 +2537,15 @@ information. If no music is being played, or if the player was not
 initialized, this function will do nothing. It never returns error.
 
 
-* Function 78: Load a Music Module samplekit (S4)
+* Function 78: Load the samplekit for Music Module (S4)
 
 Input:	 P(0) = File number
-Output:  P(7) = Number of readed bytes
+Output:  P(7) = Number of bytes read
 
-This function loads from the specified opened file a Music Module samplekit, 
+This function loads from the specified opened file Music Module's samplekit, 
 which must be saved in the Moonblaster format: 56 header bytes, which will be 
 copied into the appropriate zone of the player; and 32K of samples, which 
-will be transferred to the Music Module sample RAM.
+will be transferred to the Moonblaster Tune sample RAM.
 
 Data will be read from a previously opened file. This feature allows you to 
 concatenate the samplekit with other useful data in a single data file: in 
@@ -2627,8 +2627,8 @@ segment for data, then you would call this function with P(0)=7; the
 extra data segment would be number 6.
 
 If a number of segments less than 6 is specified in P(0), NestorBASIC will 
-allocate 5 segments (see section 2), or 6 if a music player has been 
-loaded. If a number of segments higher than the total number of available 
+allocate 5 segments (see section 2), or 6 if a music player was loaded.
+If a number of segments higher than the total number of available 
 segments is specified, then as much segments as possible will be allocated 
 (up to 247), and P(0) will return the number of segments that have been 
 actually allocated. Whatever finally happens, this function will never return 
