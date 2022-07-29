@@ -2545,7 +2545,7 @@ Output:  P(7) = Number of bytes read
 This function loads from the specified opened file Music Module's samplekit, 
 which must be saved in the Moonblaster format: 56 header bytes, which will be 
 copied into the appropriate zone of the player; and 32K of samples, which 
-will be transferred to the Moonblaster Tune sample RAM.
+will be transferred to the Music Module sample-RAM.
 
 Data will be read from a previously opened file. This feature allows you to 
 concatenate the samplekit with other useful data in a single data file: in 
