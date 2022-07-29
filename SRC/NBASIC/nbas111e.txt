@@ -28,8 +28,8 @@ Turbo-BASIC compatibility, NestorBASIC gives you the following capabilities:
 
 All of these functions are available through a single USR and an integer        
 parameter array, therefore they are fully TurboBASIC compatible. In fact,
-the TurboBASIC compiler itself is incorporated into NBASIC binary,
-and it gets automatically loaded during NestorBASIC startup process.
+TurboBASIC "runtime—compiler" itself is incorporated into NBASIC binary,
+and it gets automatically loaded with the startup of NestorBASIC.
 
 NestorBASIC is loaded in a RAM segment hidden to BASIC, so only a small amount  
 of MSX-BASIC main RAM (aprox. 500 bytes) is needed for a jump routine.
