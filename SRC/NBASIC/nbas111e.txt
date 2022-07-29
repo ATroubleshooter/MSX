@@ -600,9 +600,9 @@ about enabling and disabling the sound chips.
 Once the player is loaded, you can use the functions that NestorBASIC           
 includes for the following purposes:
 
-- Start playing a music stored in any RAM segment (VRAM segments are 
+- Start playing the tune stored in any RAM segment (VRAM segments are 
 not supported).
-- Stop playing a music being played.
+- Stop playing the tune being played.
 - Pause/continue the music being played.
 - Fade out the music being played, with specification of the fading speed.
 - Obtain various information about the music being played (segment and the
@@ -622,16 +622,16 @@ Moonblaster 1.4 player fits in 4.5K, therefore the memory space from &H1200 to
 of a sound track to be played. This is not the case with Moonblaster Wave player
 which itself occupies the whole segment 5.
 
-Moonblaster 1.4 soundtracks must be stored in a single segment, so its maximum  
+Moonblaster 1.4 tunes must be stored in a single segment, so its maximum  
 length is 16K. Moonblaster Wave music can be stored through consecutive 
-segments, maximum of 3: if in the process of parsing the soundtrack's data to
+segments, maximum of 3: if in the process of parsing the tune's data to
 play, NestorBASIC hits the address &H3FFF of a segment, it proceeds with 0
 address of the next segment.
 
-In order to load a music through consecutive segments, the following sample     
+In order to load a music tune through consecutive segments, the following sample     
 code can be used:
 
-1000 'Loading a music through consecutive segments,
+1000 'Loading a tune through consecutive segments,
 1010 'starting in segment S, address A
 1020 F$(0)="music.mwm":P(2)=S:P(3)=A
 1030 E=USR(31):IF E<>0 THEN 10000
@@ -643,7 +643,7 @@ code can be used:
 10000 'Disk error E handling routine
 ...
 
-NOTE: A Moonblaster Wave music can start at any address of a segment, if        
+NOTE: A Moonblaster Wave tunes can start at any address of a segment, if        
 it continues at the beginning of the next segment. However the first 800 
 bytes of the music, containing pattern table and various pointers, must be 
 entirely stored in the first segment.
@@ -677,7 +677,7 @@ disk access errors:
 or there is no wavekit saved in USER mode.
 
 NOTE: In fact, Moonblaster 1.4 player is unable to tell if the data at a given  
-address is actually a Moonblaster 1.4 soundtrack, and relies totally on the
+address is actually a Moonblaster 1.4 tune, and relies totally on the
 first byte to detect whether this data is a Moonblaster music, saved in
 EDIT mode. Moonblaster Wave player doesn't have that flaw.
 
