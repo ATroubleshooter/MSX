@@ -2615,8 +2615,8 @@ Output:  P(0) = Number of segments allocated for NestorBASIC
 This function works both in DOS 1 and DOS 2, however it is intended for being 
 used in DOS 2.
 
-Under DOS 2, on the NestorBASIC startup, it allocates itself all the unallocated
-segments on the system, up to 247. This implies that there will be no
+Under DOS 2, once NestorBASIC get started, it allocates to itself all the
+unallocated segments on a system, up to 247. This implies that there will be no
 free segments remained for other resident programs that perform segment
 allocation too, like DOS 2 RAM disk, NestorMan or InterNestor Suite. 
 To solve this problem, use this function to let NestorBASIC know how many 
