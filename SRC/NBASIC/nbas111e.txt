@@ -83,7 +83,7 @@ NestorBASIC:
 3: NestorBASIC already present in memory. All variables were initialized.
 4: Undefined in this version.
 
-After launching the NestorBASIC, CLEAR statement can be freely used in 
+After launching the NestorBASIC, you can use the CLEAR statement normally in 
 order to reserve memory for loading other machine code routines or user data 
 to MSX-BASIC main RAM. However, due to the fact that NestorBASIC performs 
 slot/segment switchings in page 2, and the BASIC interpreter puts the stack 
@@ -843,7 +843,7 @@ number passed as a parameter to the USR command. That is, to use the function
 number F, you just do USR(F), having in count that in case of using
 a variable and not an immediate value to specify the function, it has to be a
 variable of integer type. Parameters for the function must be set in the array P
-(and, in some cases, also in the array F$) before calling the function. Once
+(and, in some cases, also in the array F$) before calling the function. When
 executed, the function returns its results in that same arrays, P and/or F.
 
 Items of P and F$ matrices, not mentioned explicitly in the results list of a   
@@ -1918,7 +1918,7 @@ load"prog.bas"                  'Load the BASIC program
 F$(0)="prog.nba":?USR(57)       'Save the BASIC program with the header
 				'(setting P(0) is optional)
 
-Once saved in this way, loading and executing the program is easy:
+Once saved in that fashion, loading and running the program is easy:
 
 1000 'Open prog.nba, read to segment S and close
 1001 F$(0)="prog.nba":?USR(31):P(2)=S:P(3)=0:P(4)=&H4000:?USR(33):?USR(32)
