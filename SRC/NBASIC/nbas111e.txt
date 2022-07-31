@@ -1684,7 +1684,7 @@ you'll need to call function 80 before creating RAM disk - to reduce the number
 of segments allocated to NestorBASIC; otherwise, there will be no free segments for
 the RAM disk (unless the computer has more than 4M RAM).
 
-If there are not P(0) free segments but it is possible to create a smaller 
+If there is no P(0) free segments available, but it is possible to create a smaller 
 RAM disk, the function will do it and will not return error; P(0) will return 
 the size of the RAM disk created. But if there are no available segments at 
 all and the RAM disk has not been created, the function will return the 
