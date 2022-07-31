@@ -1668,7 +1668,7 @@ This function is only available under DOS 2. Under DOS 1 will always return
 the error code 1.
 
 To obtain the RAM disk size in K just do P(0)*16. A size of zero means that 
-the RAM disk dones not exist.
+the RAM disk does not exist.
 
 
 * Function 49: Create the RAM disk (DOS 2)
