@@ -1679,8 +1679,8 @@ Output:  P(0) = Created RAM disk size in 16K segments
 This function is only available under DOS 2. Under DOS 1 will always return 
 the error code 1.
 
-Since by default NestorBASIC allocates all the free segments available 
-when starting, you have to call the function 80 beforehand, to reduce the number
+Since by default NestorBASIC allocates on startup all the free segments available,
+you'll need to call function 80 before creating RAM disk - to reduce the number
 of segments allocated to NestorBASIC; otherwise, there will be no free segments for
 the RAM disk (unless the computer has more than 4M RAM).
 
