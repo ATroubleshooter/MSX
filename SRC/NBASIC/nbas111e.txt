@@ -1673,8 +1673,8 @@ the RAM disk does not exist.
 
 * Function 49: Create the RAM disk (DOS 2)
 
-Input:	 P(0) = Size required in 16K segments
-Output:  P(0) = Size of the RAM disk created in 16K segments
+Input:	 P(0) = Requested size in 16K segments
+Output:  P(0) = Created RAM disk size in 16K segments
 
 This function is only available under DOS 2. Under DOS 1 will always return 
 the error code 1.
