@@ -1740,8 +1740,8 @@ its filename in F$(0); if you try to do this, an error will be generated. If
 the file is open, you must specify its file number in P(0).
 
 The only attributes that can be modified for a file are the system, hidden, 
-read only and archive; and for a directory, only the hidden. If you try to 
-change any other attribute, you will obtain an error. You can't change the 
+read only and archive; and for a directory, only the hidden. If you'll try to 
+change any other attribute, you will get an error. You can't change the 
 attributes for the "." and ".." entries.
 
 
