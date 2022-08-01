@@ -1732,7 +1732,7 @@ the error code 1.
 
 If P(0)=255, the attributes byte for the file with the name specified in 
 F$(0) will be set (F$(0) can contain a drive letter and a pathname); 
-elotherwise, the attributes byte for the file opened and with the P(0) number 
+otherwise, the attributes byte for the file opened and with the P(0) number 
 assigned will be set.
 
 It is not possible to set the attributes byte of an opened file by specifying 
