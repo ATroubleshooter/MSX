@@ -1708,8 +1708,8 @@ This function is only available under DOS 2. Under DOS 1 will always return
 the error code 1.
 
 If P(0)=255, the attributes byte for the file with the name specified in 
-F$(0) will be obtained (F$(0) can contain a drive letter and a pathname); 
-otherwise, the attributes byte for the file previously opened and with the 
+F$(0) will be obtained. F$(0) can contain a drive letter and a pathname; 
+Otherwise, the attributes byte for the file previously opened and with the 
 number P(0) assigned will be obtained.
 
 
