@@ -1751,10 +1751,10 @@ Input:	 F$(0) = Pathname to be parsed
 	 P(10)<>0 if the pathname refers to a volume label
 Output:  F$(1) = Last item of the pathname
 	 P(8)  = Logical drive number (1=A:,...,8=H:)
-	 P(9)  = Position in the pathname string of the last item
+	 P(9)  = Position of the last item in the pathname string 
 		 (0 if there is not last item)
-	 The following results set to -1 if the specified condition mets,
-	 otherwise set to 0:
+	 The following variables return -1 if the corresponding condition is met,
+	 otherwise they return 0:
 	 P(0)	 The pathname contains characters other than the drive letter
 	 P(1)	 A directory is specified in the pathname
 	 P(2)	 A drive letter is specified in the pathname
