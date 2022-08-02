@@ -1689,5 +1689,42 @@ P(0).
 
 Для файлов - могут быть модифицированы только атрибуты system, hidden, read only
 и archive; для директорий - только hidden. Если вы попытаетесь изменить любой
-другой атрибут, вы получите ошибку. Нельзя изменить атрибуты элементов
-"." и ".." каталога.
+другой атрибут, вы получите ошибку. Нельзя изменить атрибуты "." и ".."
+элементов каталога.
+
+
+* Функция 52:  Парсинг пути (DOS 2)
+
+Input:	 F$(0) = Путь, который нужно распарсить
+	 P(10)<>0 если путь указывает на метку тома
+Output:  F$(1) = Последний элемент пути
+	 P(8)  = Номер логического привода (1=A:,...,8=H:)
+	 P(9)  = Позиция последнего элемента в строке пути.
+		 (0 если последний элемент пути отсутствует)
+	 Нижеперечисленные переменные будут равны -1 при соблюденнии данных условий,
+	 иначе они будут равны 0:
+	 P(0)	 Путь содержит что-то помимо имени диска
+	 P(1)	 В пути содержится название директории
+	 P(2)	 В пути содержится имя диска
+	 P(3)	 В пути содержится имя файла
+	 P(4)	 Путь содержит расширение файла
+	 P(5)	 Последний элемент пути не определен
+	 P(6)	 Последний элемент пути "." или ".."
+	 P(7)	 Последний элемент пути это ".."
+
+Эта функция доступна только под DOS 2. Под DOS 1 она будет всегда возвращать    
+код ошибки 1.
+
+This function just treats the input string returning the specified results. 
+No disk accesses are done, and the default drive/directory are not modified.
+
+If only a drive letter is specified, or if the last character of the string 
+is the directory separator character "\", then there is no "last item" on the 
+string; then P(9) will be 0 and F$(1) will be an empty string. Example: for 
+F$(0) = "A:\DIR\FILES\ONEFI.LE", the last element, returned in F$(1), will be 
+"ONEFI.LE", and P(9) will be 14.
+
+If the pathname does not contain a drive letter, the current default drive 
+will be returned in P(2). Therefore, P(2) will never be zero.
+
+If P(10)<>0 is specified, P(1) and P(4) to P(7) will always be zero.
