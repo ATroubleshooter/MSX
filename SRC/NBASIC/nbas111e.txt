@@ -1753,7 +1753,7 @@ Output:  F$(1) = Last item of the pathname
 	 P(8)  = Logical drive number (1=A:,...,8=H:)
 	 P(9)  = Position of the last item in the pathname string 
 		 (0 if there is not last item)
-	 The following variables return -1 if the corresponding condition is met,
+	 The below variables return -1 if the corresponding condition is met,
 	 otherwise they return 0:
 	 P(0)	 The pathname contains characters other than the drive letter
 	 P(1)	 A directory is specified in the pathname
@@ -1767,8 +1767,8 @@ Output:  F$(1) = Last item of the pathname
 This function is only available under DOS 2. Under DOS 1 will always return 
 the error code 1.
 
-This function just treats the input string returning the specified results. 
-No disk accesses are done, and the default drive/directory are not modified.
+This function does only process input string, returning respective results. 
+No disk access is performed, and the default drive/directory are not changed.
 
 If only a drive letter is specified, or if the last character of the string 
 is the directory separator character "\", then there is no "last item" on the 
