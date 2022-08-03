@@ -1701,8 +1701,8 @@ Output:  F$(1) = Последний элемент пути
 	 P(8)  = Номер логического привода (1=A:,...,8=H:)
 	 P(9)  = Позиция последнего элемента в строке пути.
 		 (0 если последний элемент пути отсутствует)
-	 Нижеперечисленные переменные будут равны -1 при соблюденнии данных условий,
-	 иначе они будут равны 0:
+	 Нижеперечисленные переменные будут равны -1 при соблюдении
+	 данных условий, иначе они будут равны 0:
 	 P(0)	 Путь содержит что-то помимо имени диска
 	 P(1)	 В пути содержится название директории
 	 P(2)	 В пути содержится имя диска
@@ -1715,16 +1715,18 @@ Output:  F$(1) = Последний элемент пути
 Эта функция доступна только под DOS 2. Под DOS 1 она будет всегда возвращать    
 код ошибки 1.
 
-This function just treats the input string returning the specified results. 
-No disk accesses are done, and the default drive/directory are not modified.
+Эта функция только обрабатывает входящую строку, возвращая соответствующие      
+результаты. Не осуществляется никаких обращений к диску, не меняются текущие
+рабочий привод и директория.
 
-If only a drive letter is specified, or if the last character of the string 
-is the directory separator character "\", then there is no "last item" on the 
-string; then P(9) will be 0 and F$(1) will be an empty string. Example: for 
-F$(0) = "A:\DIR\FILES\ONEFI.LE", the last element, returned in F$(1), will be 
-"ONEFI.LE", and P(9) will be 14.
+Если строка состоит из одной только лишь буквы привода, или если последним      
+символом в строке является разделитель "\", это будет означать, что в строке нет
+"последнего элемента"; в этом случае, P(9) будет равняться 0 и F$(1) будет
+пустой строкой. Пример:
+Для F$(0) = "A:\DIR\FILES\ONEFI.LE", "последним элементом", возвращаемым в F$(1),
+будет "ONEFI.LE", и P(9) будет равно 14.
 
-If the pathname does not contain a drive letter, the current default drive 
-will be returned in P(2). Therefore, P(2) will never be zero.
+Если строка не содержит буквы привода, в P(2) будет возвращено текущее значение
+рабочего привода P(2). Таким образом, P(2) никогда не будет равняться 0.
 
-If P(10)<>0 is specified, P(1) and P(4) to P(7) will always be zero.
+Если на входе задано P(10)<>0, то P(1) и P(4) по P(7) всегда будут равны 0.
