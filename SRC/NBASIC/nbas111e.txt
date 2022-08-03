@@ -1735,12 +1735,12 @@ F$(0) will be set (F$(0) can contain a drive letter and a pathname);
 otherwise, the attributes byte for the file opened and with the P(0) number 
 assigned will be set.
 
-It is not possible to set the attributes byte of an opened file by specifying 
+It is not possible to set the attributes byte of an opened file by specifying   
 its filename in F$(0); if you try to do this, an error will be generated. If 
 the file is open, you must specify its file number in P(0).
 
-The only attributes that can be modified for a file are the system, hidden, 
-read only and archive; and for a directory, only the hidden. If you'll try to 
+The only attributes that can be modified for a file are the system, hidden,     
+read only and archive; and for a directory, only the hidden. If you'll try to
 change any other attribute, you will get an error. You can't change the 
 attributes for the "." and ".." entries.
 
@@ -1764,15 +1764,15 @@ Output:  F$(1) = Last item of the pathname
 	 P(6)	 The last element is "." or ".."
 	 P(7)	 The last element is ".."
 
-This function is only available under DOS 2. Under DOS 1 will always return 
+This function is only available under DOS 2. Under DOS 1 will always return     
 the error code 1.
 
-This function does only process input string, returning respective results. 
+This function does only process input string, returning respective results.     
 No disk access is performed, and the default drive/directory are not changed.
 
-If only a drive letter is specified, or if the last character of the string 
-is the directory separator character "\", then there is no "last item" on the 
-string; then P(9) will be 0 and F$(1) will be an empty string. Example: for 
+If just a drive letter is specified alone, or the string is ending with "\"     
+directory separator character, then there is no "last item" in the string;
+then P(9) will be 0 and F$(1) will be an empty string. Example: for 
 F$(0) = "A:\DIR\FILES\ONEFI.LE", the last element, returned in F$(1), will be 
 "ONEFI.LE", and P(9) will be 14.
 
