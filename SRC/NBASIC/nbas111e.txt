@@ -1800,8 +1800,8 @@ Output:  P(7) = Size in RAM of the compressed data
 
 Compression is done through consecutive segments: after writting compressed 
 data in the address &H3FFF of the segment S, the writting of the generated 
-data continues on address &H0000 of the segment S+1. If this situation is 
-done but the S+1 segment does not exists, an error 5 will be generated. This 
+data continues on address &H0000 of the segment S+1. If this is the case
+but the S+1 segment does not exist, an error 5 will be generated. This 
 function does not supports VRAM segments, nor the segment 255.
 
 If the last used RAM address is the &H3FFF of the segment S and P(6)<>0, then 
