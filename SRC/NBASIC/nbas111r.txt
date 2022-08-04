@@ -1737,13 +1737,13 @@ P(0).
 
 * Функция 53: Сжатие графических данных
 
-Вход:	 P(0) = VRAM блок источника
+Вход:	 P(0) = Блок VRAM источника
 	 P(1) = Начальный адрес источника (VRAM)
 	 P(2) = Первый сегмент назначения
 	 P(3) = Начальный адрес назначения (RAM)
 	 P(4) = Длинна сжимаемых VRAM данных
-	 P(5) = Увеличить P(1) если <>0
-	 P(6) = Увеличить P(3) если <>0
+	 P(5) <> 0 -> Автоинкремент P(1)
+	 P(6) <> 0 -> Автоинкремент P(3)
 Выход:   P(7) = Полученный размер сжатых данных в RAM
 	 P(8) = Количество использованных сегментов RAM
 	 P(0):P(1) = P(0):P(1) + P(4) если P(5)<>0
@@ -1754,30 +1754,29 @@ P(0).
 S+1. Если при этом сегмент S+1 не существует, то произойдет ошибка 5. Эта 
 функция не поддерживает сегменты VRAM и 255 сегмент.
 
-Если последним использованным RAM адресом был &H3FFF сегмента S, и было задано
+Если последним использованным RAM адресом был &H3FFF сегмента S, и было задано  
 P(6)<>0, то в P(2) будет S+1 и в P(3) 0 по завершении. В этом случае, если S был 
 последним доступным RAM-сегментом, по возвращении из функции в P(2) будет 0.
 
-* Функция 54: Decompression of graphic data
+* Функция 54: Распаковка графических данных
 
-Вход:	 P(0) = Destination VRAM block
-	 P(1) = Destination start address (VRAM)
-	 P(2) = First source segment
-	 P(3) = Source start address (RAM)
-	 P(5) = Increase P(1) if <>0
-	 P(6) = Increase P(3) if <>0
-Выход:   P(7) = Size in VRAM of the decompressed image
-	 P(8) = Number of used RAM segments
-	 P(0):P(1) = P(0):P(1) + P(7) if P(5)<>0
-	 P(2):P(3) = RAM address next to the last one used, if P(6)<>0
+Вход:	 P(0) = VRAM-блок назначения
+	 P(1) = Начальный адрес назначения (VRAM)
+	 P(2) = Первый сегмент источника
+	 P(3) = Начальный адрес источника (RAM)
+	 P(5) <> 0 -> Автоинкремент P(1)
+	 P(6) <> 0 -> Автоинкремент P(3)
+Выход:   P(7) = Полученный размер распакованного изображения в VRAM
+	 P(8) = Количество использованных сегментов RAM
+	 P(0):P(1) = P(0):P(1) + P(7) если P(5)<>0
+	 P(2):P(3) = Адрес RAM, следующий за последним использованным, если P(6)<>0
 
-Decompression process is done through consecutive segments: after 
-decompressing data stored in the address &H3FFF of segment S, the reading of 
-the compressed data continues from the address &H0000 of segment S+1. If this 
-situation is done but segment S+1 does not exist, or if invalid data is found 
-in the compressed data, error 6 will be generated. This function does not 
-support VRAM segments, nor the segment 255.
+Распаковка осуществляется в последовательные сегменты: после декомпрессии       
+данных, находящихся по адресу &H3FFF в сегменте S, чтение исходных сжатых данных
+продолжается с адреса &H0000 сегмента S+1. Если при этом сегмент S+1 не
+существует, или обнаружена ошибка в сжатых данных, то произойдет ошибка 6. Эта  
+функция не поддерживает сегменты VRAM и 255 сегмент.
 
-If the last used RAM address is the &H3FFF of the segment S and P(6)<>0, then 
-P(2) will be S+1 and P(3) will be 0 at the end. In such situation, if S was 
-the last available RAM segment, P(2) will be zero at the end.
+Если последним использованным RAM адресом был &H3FFF сегмента S, и было задано  
+P(6)<>0, то в P(2) будет S+1 и в P(3) 0 по завершении. В этом случае, если S был 
+последним доступным RAM-сегментом, по возвращении из функции в P(2) будет 0.
