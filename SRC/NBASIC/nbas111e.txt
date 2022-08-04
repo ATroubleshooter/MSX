@@ -1791,8 +1791,8 @@ Input:	 P(0) = Source VRAM block
 	 P(2) = First destination segment
 	 P(3) = Destination start address (RAM)
 	 P(4) = Size of the VRAM data to be compressed
-	 P(5) = Increase P(1) if <>0
-	 P(6) = Increase P(3) if <>0
+	 P(5) <> 0 -> Autoincrement of P(1)
+	 P(6) <> 0 -> Autoincrement of P(3)
 Output:  P(7) = Size in RAM of the compressed data
 	 P(8) = Number of used RAM segments
 	 P(0):P(1) = P(0):P(1) + P(4) if P(5)<>0
@@ -1815,9 +1815,9 @@ Input:	 P(0) = Destination VRAM block
 	 P(1) = Destination start address (VRAM)
 	 P(2) = First source segment
 	 P(3) = Source start address (RAM)
-	 P(5) = Increase P(1) if <>0
-	 P(6) = Increase P(3) if <>0
-Output:  P(7) = Size in VRAM of the decompressed image
+	 P(5) <> 0 -> Autoincrement of P(1)
+	 P(6) <> 0 -> Autoincrement of P(3)
+Output:  P(7) = Decompressed image size in VRAM
 	 P(8) = Number of used RAM segments
 	 P(0):P(1) = P(0):P(1) + P(7) if P(5)<>0
 	 P(2):P(3) = RAM address next to the last one used, if P(6)<>0
