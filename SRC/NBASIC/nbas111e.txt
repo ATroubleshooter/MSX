@@ -1842,10 +1842,10 @@ Input:	 P(0) = Segment
 	 P(1) = Start address
 Output:  -
 
-VERY IMPORTANT: For using this function you must change the BASIC programs 
-begin address. See section 6 for more details.
+VERY IMPORTANT: To use this function you must change the BASIC programs 
+begining address. See section 6 for more details.
 
-This function executes the BASIC program stored in the specified segment. 
+This function executes the BASIC program located in the specified segment. 
 The program must be stored beginning in the P(1) specified address of the 
 P(0) segment, with the following format:
 
