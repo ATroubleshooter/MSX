@@ -1780,3 +1780,45 @@ P(6)<>0, то в P(2) будет S+1 и в P(3) 0 по завершении. В 
 Если последним использованным RAM адресом был &H3FFF сегмента S, и было задано  
 P(6)<>0, то в P(2) будет S+1 и в P(3) 0 по завершении. В этом случае, если S был 
 последним доступным RAM-сегментом, по возвращении из функции в P(2) будет 0.
+
+9.6. ФУНКЦИИ ДЛЯ ЗАПУСКА ПРОГРАММ НА BASIC'е
+
+* Функция 55: Запуск программы на Бейсике, находящейся в сегменте (S4)
+
+Вход:	 P(0) = Сегмент
+	 P(1) = Начальный адрес
+Выход:   -
+
+ВАЖНО: Чтобы использовать эту функцию нужно изменить начальный адрес
+BASIC-программ. Детально об этом - в разделе 6.
+
+Эта функция запускает программу на Бейсике, расположеную в указанном сегменте.
+Программа должна начинаться с адреса, указанного в P(1), в сегменте номер P(0),
+в следующем формате:
+
++&H0000: Not used by NestorBASIC. You can use it, for example, for inserting 
+	 an identification byte.
++&H0001: Last program address +1, in the range &H8000-&HBFFF; low byte.
++&H0002: Idem, high byte.
++&H0003: Here starts the program data.
+
+All the exisiting numeric variables of the caller BASIC program will be 
+transferred to the new program. You can use this function from inside a 
+turbo block, but in such case the only transferred variables will be the 
+integer variables defined outside of the turbo block and passed to it with 
+CALL TURBO ON (variable, ..., array(), ...).
+
+The string variables stored in the BASIC string area will also be 
+transferred, but the strings defined directly in the BASIC text reside inside 
+the own BASIC program data, and will be lost. For being sure that a string is 
+stored inside the BASIC string area, do the following operation: C$=C$+"". Of 
+course, the most practical way for managing it is to group all the string 
+variables into a string array (for example F$), then this operation can be 
+done with a loop.
+
+This function will return the error code -1 if a non existing segment is 
+specified, or if the segment 255 is specified, and error code -2 if the BASIC 
+main RAM is not large enough to store the new program and the existing 
+variables. This situation may arise if the new program is larger than the 
+caller program, but if the lengths difference is not very big and the number 
+of variables is reasonably small you should not reach this situation.
