@@ -1846,7 +1846,7 @@ VERY IMPORTANT: To use this function you must change the BASIC programs
 begining address. See section 6 for more details.
 
 This function executes the BASIC program located in the specified segment. 
-The program must be stored beginning in the P(1) specified address of the 
+The program must be stored starting by the address, designated in P(1) of the 
 P(0) segment, with the following format:
 
 +&H0000: Not used by NestorBASIC. You can use it, for example, for inserting 
