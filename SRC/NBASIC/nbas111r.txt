@@ -1796,8 +1796,8 @@ BASIC-программ. Детально об этом - в разделе 6.
 Программа должна находиться, начиная с адреса, указанного в P(1), в сегменте
 номер P(0), в следующем формате:
 
-+&H0000: Not used by NestorBASIC. You can use it, for example, for inserting 
-	 an identification byte.
++&H0000: Не используется NestorBASIC. Может быть полезно, например, в качестве
+	 байта-идентификатора.
 +&H0001: Last program address +1, in the range &H8000-&HBFFF; low byte.
 +&H0002: Idem, high byte.
 +&H0003: Here starts the program data.
