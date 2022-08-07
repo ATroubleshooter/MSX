@@ -1853,7 +1853,7 @@ P(0) segment, with the following format:
 	 an identification byte.
 +&H0001: Last program address +1, in the range &H8000-&HBFFF; low byte.
 +&H0002: Idem, high byte.
-+&H0003: Here starts the program data.
++&H0003: The beginning of the program.
 
 All the exisiting numeric variables of the caller BASIC program will be 
 transferred to the new program. You can use this function from inside a 
