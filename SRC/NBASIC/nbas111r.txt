@@ -1798,9 +1798,9 @@ BASIC-программ. Детально об этом - в разделе 6.
 
 +&H0000: Не используется NestorBASIC. Может быть полезно, например, в качестве
 	 байта-идентификатора.
-+&H0001: Last program address +1, in the range &H8000-&HBFFF; low byte.
-+&H0002: Idem, high byte.
-+&H0003: Here starts the program data.
++&H0001: Адрес конца программы +1, в диапазоне &H8000-&HBFFF; младший байт.
++&H0002: То же, старший байт.
++&H0003: Начало программы.
 
 All the exisiting numeric variables of the caller BASIC program will be 
 transferred to the new program. You can use this function from inside a 
