@@ -1796,25 +1796,25 @@ BASIC-программ. Детально об этом - в разделе 6.
 Программа должна находиться, начиная с адреса, указанного в P(1), в сегменте
 номер P(0), в следующем формате:
 
-+&H0000: Не используется NestorBASIC. Может быть полезно, например, в качестве
-	 байта-идентификатора.
++&H0000: Не используется NestorBASIC. Может быть полезно, например, в качестве  
+байта-идентификатора.
 +&H0001: Адрес конца программы +1, в диапазоне &H8000-&HBFFF; младший байт.
 +&H0002: То же, старший байт.
 +&H0003: Начало программы.
 
-All the exisiting numeric variables of the caller BASIC program will be 
-transferred to the new program. You can use this function from inside a 
-turbo block, but in such case the only transferred variables will be the 
-integer variables defined outside of the turbo block and passed to it with 
-CALL TURBO ON (variable, ..., array(), ...).
+Все существующие числовые переменные вызывающей BASIC-программы будут переданы в
+вызываемую программу. Вы можете использовать данную функцию внутри турбо-блока,
+но в таком случае будут переданы только те целочисленные переменные, которые
+были объявлены вне турбо-блока и переданы в него посредством
+CALL TURBO ON (переменная, ..., массив(), ...).
 
-The string variables stored in the BASIC string area will also be 
-transferred, but the strings defined directly in the BASIC text reside inside 
-the own BASIC program data, and will be lost. For being sure that a string is 
-stored inside the BASIC string area, do the following operation: C$=C$+"". Of 
-course, the most practical way for managing it is to group all the string 
-variables into a string array (for example F$), then this operation can be 
-done with a loop.
+Строковые переменные, хранящиеся в строковой области переменных MSX-BASIC будут 
+также перенесены, но строки, определенные непосредственно в тексте программы,
+хранятся внутри самого текста программы на Бейсике, и не будут переданы. Чтобы
+гарантированно удостовериться, что строка хранится в области строковых
+переменных Бейсика, выполните следующую операцию: C$=C$+"". Конечно, самым
+практичным способом было бы сосредоточить все строковые переменные в строковый
+массив (например, F$), и проделать эту операцию в простом цикле.
 
 This function will return the error code -1 if a non existing segment is 
 specified, or if the segment 255 is specified, and error code -2 if the BASIC 
