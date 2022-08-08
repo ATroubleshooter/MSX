@@ -1855,7 +1855,7 @@ P(0) segment, with the following format:
 +&H0002: Idem, high byte.
 +&H0003: The beginning of the program.
 
-All the exisiting numeric variables of the caller BASIC program will be 
+All the existing numeric variables of the caller BASIC program will be 
 transferred to the new program. You can use this function from within the
 turbo block, but in this case the only transferred variables will be the 
 integer variables defined outside the turbo block and passed into it with 
