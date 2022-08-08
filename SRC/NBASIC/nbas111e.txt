@@ -1856,9 +1856,9 @@ P(0) segment, with the following format:
 +&H0003: The beginning of the program.
 
 All the exisiting numeric variables of the caller BASIC program will be 
-transferred to the new program. You can use this function from inside a 
-turbo block, but in such case the only transferred variables will be the 
-integer variables defined outside of the turbo block and passed to it with 
+transferred to the new program. You can use this function from within the
+turbo block, but in this case the only transferred variables will be the 
+integer variables defined outside the turbo block and passed into it with 
 CALL TURBO ON (variable, ..., array(), ...).
 
 The string variables stored in the BASIC string area will also be 
