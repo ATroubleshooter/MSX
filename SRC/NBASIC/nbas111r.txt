@@ -1781,7 +1781,7 @@ P(6)<>0, то в P(2) будет S+1 и в P(3) 0 по завершении. В 
 P(6)<>0, то в P(2) будет S+1 и в P(3) 0 по завершении. В этом случае, если S был
 последним доступным RAM-сегментом, по возвращении из функции в P(2) будет 0.
 
-9.6. ФУНКЦИИ ДЛЯ ЗАПУСКА ПРОГРАММ НА BASIC'е
+10.6bis. ФУНКЦИИ ДЛЯ ЗАПУСКА ПРОГРАММ НА BASIC'е
 
 * Функция 55: Запуск программы на Бейсике, находящейся в сегменте (S4)
 
@@ -1816,9 +1816,9 @@ CALL TURBO ON (переменная, ..., массив(), ...).
 практичным способом было бы сосредоточить все строковые переменные в строковый
 массив (например, F$), и проделать эту операцию в простом цикле.
 
-This function will return the error code -1 if a non existing segment is 
-specified, or if the segment 255 is specified, and error code -2 if the BASIC 
-main RAM is not large enough to store the new program and the existing 
-variables. This situation may arise if the new program is larger than the 
-caller program, but if the lengths difference is not very big and the number 
-of variables is reasonably small you should not reach this situation.
+Эта функция выдаст ошибку -1, если указан несуществующий сегмент, или 255-й.    
+Ошибка -2 будет выдана, если основной памяти MSX-BASIC не достаточно, чтобы
+вместить вызываемую программу и существующие переменные вызывающей программы.   
+Такая ситуация может возникнуть, если новая (вызываемая) программа больше, чем
+вызывающая программа. Но если разница в размерах не очень велика, и переменных
+не слишком много, вы не должны оказаться в этой ситуации.
