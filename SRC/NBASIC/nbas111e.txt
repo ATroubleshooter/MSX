@@ -1836,10 +1836,10 @@ the last available RAM segment, P(2) will be zero at the end.
 
 9.6. FUNCTIONS FOR THE EXECUTION OF BASIC PROGRAMS
 
-* Function 55: Execution of a BASIC program stored in a segment (S4)
+* Function 55: Execution of a BASIC program located in a segment (S4)
 
 Input:	 P(0) = Segment
-	 P(1) = Start address
+	 P(1) = Beginning address
 Output:  -
 
 VERY IMPORTANT: To use this function you must change the BASIC programs 
@@ -1877,20 +1877,20 @@ caller program, but if the lengths difference is not very big and the number
 of variables is reasonably small you should not reach this situation.
 
 
-* Function 56: Activation of a BASIC program stored in a segment (S4)
+* Function 56: Activation of a BASIC program located in a segment (S4)
 
 Input:	 P(0) = Segment
-	 P(1) = Begin address
+	 P(1) = Beginning address
 Output:  -
 
-VERY IMPORTANT: For using this function you must change the BASIC programs 
-begin address. See section 6 for more details.
+VERY IMPORTANT: To use this function you must change the BASIC programs 
+begining address. See section 6 for more details.
 
-This function acts like function 55, with the following difference: once the 
-new program is placed in RAM an the variables are placed after it, the new
-program is not executed, and the BASIC interpreter returns to the direct 
-mode. Except for this, the functionality is the same, as well as the error 
-conditions and error codes.
+This function acts like function 55, with the only difference: once the new
+program is placed to the MSX-BASIC main RAM and the variables are put
+right on top of it, the new program doesn't get executed and BASIC
+interpreter returns in direct mode. Except for this, the functionality is
+the same, as well as the error conditions and the error codes.
 
 
 * Function 57: Save a BASIC program with a special header (S4)
@@ -1899,12 +1899,12 @@ Input:	 P(0)  = Byte to be saved in the first header position
 		 (not used by NestorBASIC)
 	 F$(0) = Pathname + filename
 Output:  P(1)  = -1 -> No error
-	      <> -1 -> A disk error occurred, and the file remains open
+	      <> -1 -> A disk error had occurred, and the file remained open
 		       with this number; look at the value returned by the
 		       USR command for the error code, as usual.
 
-VERY IMPORTANT: For using this function you must change the BASIC programs 
-begin address. See section 6 for more details.
+VERY IMPORTANT: To use this function you must change the BASIC programs 
+begining address. See section 6 for more details.
 
 This function saves the active BASIC program in the specified file, with the 
 appropriate header for being executed or activated with functions 55 or 56 
