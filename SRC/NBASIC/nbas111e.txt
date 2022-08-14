@@ -242,7 +242,7 @@ be used for the following purposes:
 - Music playback
 
 If you try to use VRAM segments for these purposes, the called function will    
-return the "non existing segment" error.
+return the "non existent segment" error.
 
 
 3.3. THE SEGMENT 255
@@ -827,7 +827,7 @@ InterNestor Suite is not resident, or if an invalid module number is
 specified in P(0) (valid module numbers are 1 to 4).
 
 Functions 83 and 84 (data transfer between a NestorMan segment and a 
-NestorBASIC segment) return error -1 if a non existing NestorMan or 
+NestorBASIC segment) return error -1 if a non existent NestorMan or 
 NestorBASIC segment number is specified. VRAM segments and segment 255 can be 
 used with these functions.
 
@@ -1869,7 +1869,7 @@ course, the most practical way for managing it is to group all the string
 variables into a string array (for example F$), then this operation can be 
 done with a loop.
 
-This function will return the error code -1 if a non existing segment is 
+This function will return the error code -1 if a non existent segment is 
 specified, or if the segment 255 is specified, and error code -2 if the BASIC 
 main RAM is not large enough to store the new program and the existing 
 variables. This situation may arise if the new program is larger than the 
@@ -1924,7 +1924,7 @@ Once saved in that fashion, loading and running the program is easy:
 1001 F$(0)="prog.nba":?USR(31):P(2)=S:P(3)=0:P(4)=&H4000:?USR(33):?USR(32)
 ...
 10000 'Execution of the program (error treatment is optional)
-10001 P(0)=S:P(1)=0:IF USR(55)=-1 THEN PRINT "ERROR: Non existing segment!"
+10001 P(0)=S:P(1)=0:IF USR(55)=-1 THEN PRINT "ERROR: Non existent segment!"
       ELSE PRINT "ERROR: Out of memory!"
 10002 END
 
@@ -2044,7 +2044,7 @@ See also the function 58 description for considerations about the output
 values of P(12) to P(14).
 
 This function does not support VRAM segments nor the segment 255, and will 
-return the error -1 if a non existing segment is specified in P(0).
+return the error -1 if a non existent segment is specified in P(0).
 
 
 * Function 60: Print a string in graphic mode
@@ -2230,7 +2230,7 @@ amongst others) can be used by the user interrupt routines. In appendix 2 you
 will found the list and detailed description of these routines and variables.
 
 You can't define an user interrupt routine in a VRAM segment, nor in the 
-segment 255. If you specify a non existing or invalid segment in P(1) the 
+segment 255. If you specify non existent or invalid segment in P(1) the 
 function will return an error -1. If you specify a parameter other than 0, 1 
 or -1 in P(0), an error 7 will be returned.
 
@@ -2270,7 +2270,7 @@ Fuzzy Logic; if the set format is invalid, the function will return the error
 code 8.
 
 You can't use a sound effects set stored in a VRAM segment, nor in the 
-segment 255. If you specify a non existing segment in P(0), an error -1 will 
+segment 255. If you specify non existent segment in P(0), error -1 will 
 be generated.
 
 
