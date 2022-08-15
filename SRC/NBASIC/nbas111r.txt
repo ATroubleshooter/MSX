@@ -1855,7 +1855,7 @@ BASIC-программ. Детально об этом - в разделе 6.
 соответствующим заголовком, чтобы запускаться или активироваться с помощью
 функций 55 or 56 (см. функцию 55 для подробностей о формате заголовка).
 
-Эта функция облегчает конвертацию обычных программ на Бейсике в программы,
+Эта функция облегчает конвертацию обычных программ на Бейсике в программы,     
 исполняемые функцией 55; эта конвертация, таким образом, упрощается до
 следующего:
 
@@ -1863,28 +1863,29 @@ load"prog.bas"                  'Загрузка программы на BASIC
 F$(0)="prog.nba":?USR(57)       'Сохранение программы на BASIC с заголовком
 				'Задавать P(0) не обязательно
 
-Сохраненная таким образом,  программа загружается и запускается просто:
+Сохраненная таким образом,  программа загружается и запускается просто:        
 
 1000 'Открыть prog.nba, прочитать в сегмент S и закрыть
 1001 F$(0)="prog.nba":?USR(31):P(2)=S:P(3)=0:P(4)=&H4000:?USR(33):?USR(32)
 ...
 10000 'Запуск программы (обработка ошибок не обязательна)
-10001 P(0)=S:P(1)=0:IF USR(55)=-1 THEN PRINT "ERROR: Non existent segment!"
-      ELSE PRINT "ERROR: Out of memory!"
+10001 P(0)=S:P(1)=0:IF USR(55)=-1 THEN PRINT "ОШИБКА: Несуществующий сегмент!"
+      ELSE PRINT "ОШИБКА: Не достаточно памяти!"
 10002 END
 
-Используя function 56 instead of function 55 you can load programs saved with the 
-header if you don't have a copy in normal BASIC format (LOADable).
+Используя функцию 56 вместо функции 55 вы можете загружать программы,          
+сохраненные с заголовком, для которых не имеется копий в обычном формате       
+(LOADable).
 
-Of course, you can also use the normal disk access functions to save the 
-program, but in this case you must create the header manually:
+Конечно же, вы можете также использовать обычные функции доступа к диску для   
+сохранения программ, но тогда вам придется создать заголовок вручную:
 
-POKE &H8000,P(0) 'Data not used by NestorBASIC
+POKE &H8000,P(0) 'Байт не используемый NestorBASIC-ом
 POKE &H8001,PEEK(&HF6C2)
 POKE &H8002,PEEK(&HF6C3)
-'Save from &H8000 to PEEK(&H8001)+256*PEEK(&H8002) to the file
+'Сохранить начиная с &H8000 по PEEK(&H8001)+256*PEEK(&H8002) в файл
 
-The error codes returned by this function are the same as the ones returned 
-by the disk access functions (see section 4). If a disk error caused the file 
-to remain open, P(1) will contain the associated file number; otherwise, P(1) 
-will be -1.
+Коды ошибок, возвращаемые этой функцией - такие же, как у функций доступа к    
+диску (см. раздел 4). Если дисковая ошибка повлекла за собой то, что файл
+остался открытым, то в P(1) будет содержаться соответствующий номер файла.
+В противном случае, в P(1) будет -1.
