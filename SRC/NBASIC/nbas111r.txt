@@ -1889,3 +1889,60 @@ POKE &H8002,PEEK(&HF6C3)
 диску (см. раздел 4). Если дисковая ошибка повлекла за собой то, что файл
 остался открытым, тогда в P(1) будет содержаться соответствующий номер файла.
 В противном случае, в P(1) будет -1.
+
+10.7. РАЗЛИЧНЫЕ ПРОЧИЕ ФУНКЦИИ
+
+* Функция 58: Execution of a machine code routine placed on BIOS, SUB-BIOS,
+               BASIC main RAM or system work area
+
+Вход:	 P(0) = 0 to execute a routine placed on BIOS,
+                BASIC main RAM or system work area
+	     <> 0 to execute a SUB-BIOS routine
+	 P(1) = Begin address of the routine
+	 P(2) to P(11) = Input registers for the routine:
+			 P(2) = AF	 P(8) = AF'
+			 P(3) = BC	 P(9) = BC'
+			 P(4) = DE	 P(10)= DE'
+			 P(5) = HL	 P(11)= HL'
+			 P(6) = IX
+			 P(7) = IY
+Output:  P(2) to P(12) = Output registers of the routine,
+			 with the same assignment as in the input,
+			 plus the following ones:
+			 P(12) = A
+			 P(13) = Cy flag (-1 if set, 0 otherwise)
+			 P(14) = Z flag (-1 if set, 0 otherwise)
+
+With this function you can execute machine code routines placed on BIOS, 
+SUB-BIOS, BASIC main RAM or system work area, having defined previously the 
+registers input state using the array P; after the routine execution, the 
+registers output contents will also be set in array P in the same way.
+
+If P(0)=0 at input, this function will execute directly the machine code 
+routine placed at the address specified in P(1), without doing any slot or 
+segment switching. This means that this way you can execute BIOS routines (if 
+the routine address is in the range 0-&H3FFF), routines loaded in BASIC RAM 
+by user (for example with BLOAD), and routines placed in page 3 system work 
+area (for example the extended BIOS hook, at address &HFFCA). Note however 
+that when this function is executed, NestorBASIC segment will be switched on 
+page 1. This implies that it is not possible to directly execute ruotines 
+placed at the BASIC interpreter ROM. To execute such routines, use the BIOS 
+routine CALBAS (&H0159), which accepts in IX the address of the BASIC 
+interpreter routine to be called.
+
+If P(0)<>0 at input, the SUB-BIOS routine whose address is specified in P(1) 
+will be executed; in this case, an error code -1 will be returned if an 
+address higher than &H3FFF is specified. To perform the SUB-BIOS call, the 
+BIOS routine EXTROM is used, so the input contents of the IX register 
+[variable P(6)] will be lost.
+
+The value returned in P(12) will be the same as the value returned in the 
+high byte of P(2). Likewise, the values returned in P(13) and P(14) will 
+indicate the state of bits 0 and 6, respectively, of the low byte of P(2). 
+Since normally one wants to retrieve the value returned in A register by 
+itself or the output value of the flags Cy and Z by themselves, rather than 
+the complete AF pair, using P(12) to P(14) will be more convenient than using 
+P(2) when looking at the output registers. However, when establishing the 
+input value for A and the flags you need to use P(2), you can't use P(12). 
+You can calculate the value to set up in P(2) with the following formula:
+P(2) = Cy + 2*N + 4*P/V + 16*H + 64*Z + 128*M + 256*A
