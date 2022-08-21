@@ -1945,9 +1945,9 @@ to remain open, P(1) will contain the associated file number; otherwise, P(1)
 will be -1.
 
 
-10.7. MISCELLAENOUS FUNCTIONS
+10.7. MISCELLANEOUS FUNCTIONS
 
-* Function 58: Execution of a machine code routine placed on BIOS, SUB-BIOS,
+* Function 58: Execution of a machine code routine located in BIOS, SUB-BIOS,
                BASIC main RAM or system work area
 
 Input:	 P(0) = 0 to execute a routine placed on BIOS,
