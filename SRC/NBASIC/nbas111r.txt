@@ -1892,12 +1892,12 @@ POKE &H8002,PEEK(&HF6C3)
 
 10.7. РАЗЛИЧНЫЕ ПРОЧИЕ ФУНКЦИИ
 
-* Функция 58: Execution of a machine code routine placed on BIOS, SUB-BIOS,
-               BASIC main RAM or system work area
+* Функция 58: Выполнение подпрограммы в машинном коде, находящейся в BIOS, SUB-BIOS,
+               основном ОЗУ BASIC'а или системной рабочей области
 
-Вход:	 P(0) = 0 to execute a routine placed on BIOS,
-                BASIC main RAM or system work area
-	     <> 0 to execute a SUB-BIOS routine
+Вход:	 P(0) = 0 чтобы выполнить подпрограмму в BIOS,
+                основном ОЗУ BASIC'а или системной рабочей области
+	     <> 0 чтобы выполнить подпрограмму SUB-BIOS
 	 P(1) = Begin address of the routine
 	 P(2) to P(11) = Input registers for the routine:
 			 P(2) = AF	 P(8) = AF'
