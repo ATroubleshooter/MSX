@@ -1898,20 +1898,20 @@ POKE &H8002,PEEK(&HF6C3)
 Вход:	 P(0) = 0 чтобы выполнить подпрограмму в BIOS,
                 основном ОЗУ BASIC'а или системной рабочей области
 	     <> 0 чтобы выполнить подпрограмму SUB-BIOS
-	 P(1) = Begin address of the routine
-	 P(2) to P(11) = Input registers for the routine:
+	 P(1) = Адрес начала подпрограммы
+	 P(2) to P(11) = Входящие регистры подпрограммы:
 			 P(2) = AF	 P(8) = AF'
 			 P(3) = BC	 P(9) = BC'
 			 P(4) = DE	 P(10)= DE'
 			 P(5) = HL	 P(11)= HL'
 			 P(6) = IX
 			 P(7) = IY
-Output:  P(2) to P(12) = Output registers of the routine,
-			 with the same assignment as in the input,
-			 plus the following ones:
+Output:  P(2) to P(12) = Выходные регистры подпрограммы,
+			 их назначение то же, что и у входящих,
+			 плюс следующие:
 			 P(12) = A
-			 P(13) = Cy flag (-1 if set, 0 otherwise)
-			 P(14) = Z flag (-1 if set, 0 otherwise)
+			 P(13) = Cy flag (-1 если установлен, 0 если нет)
+			 P(14) = Z flag (-1 если установлен, 0 если нет)
 
 With this function you can execute machine code routines placed on BIOS, 
 SUB-BIOS, BASIC main RAM or system work area, having defined previously the 
