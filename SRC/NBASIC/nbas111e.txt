@@ -1953,7 +1953,7 @@ will be -1.
 Input:	 P(0) = 0 to execute a routine placed on BIOS,
                 BASIC main RAM or system work area
 	     <> 0 to execute a SUB-BIOS routine
-	 P(1) = Begin address of the routine
+	 P(1) = Begining address of the routine
 	 P(2) to P(11) = Input registers for the routine:
 			 P(2) = AF	 P(8) = AF'
 			 P(3) = BC	 P(9) = BC'
