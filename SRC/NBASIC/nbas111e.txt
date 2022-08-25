@@ -1980,8 +1980,8 @@ the routine address is in the range 0-&H3FFF), routines loaded in BASIC RAM
 by user (for example with BLOAD), and routines placed in page 3 system work 
 area (for example the extended BIOS hook, at address &HFFCA). Note however 
 that when this function is executed, NestorBASIC segment will be switched on 
-page 1. This implies that it is not possible to directly execute ruotines 
-placed at the BASIC interpreter ROM. To execute such routines, use the BIOS 
+page 1. This implies that it is not possible to directly execute routines 
+located in the BASIC interpreter ROM. To execute such routines, use the BIOS 
 routine CALBAS (&H0159), which accepts in IX the address of the BASIC 
 interpreter routine to be called.
 
