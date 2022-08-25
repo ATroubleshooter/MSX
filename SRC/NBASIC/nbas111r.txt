@@ -1913,22 +1913,23 @@ Output:  P(2) to P(12) = Выходные регистры подпрограм�
 			 P(13) = Cy flag (-1 если установлен, 0 если нет)
 			 P(14) = Z flag (-1 если установлен, 0 если нет)
 
-With this function you can execute machine code routines placed on BIOS, 
-SUB-BIOS, BASIC main RAM or system work area, having defined previously the 
-registers input state using the array P; after the routine execution, the 
-registers output contents will also be set in array P in the same way.
+С помощью этой функции можно вызвать машинные подпрограммы, расположенные в    
+BIOS, SUB-BIOS, основном ОЗУ MSX-BASIC или системной рабочей области, задав
+предварительно входные значения регистров через массив P; после возвращения
+из подпрограммы, выходные значения регистров будут помещены в массив P, в
+таком же соответствии.
 
-If P(0)=0 at input, this function will execute directly the machine code 
-routine placed at the address specified in P(1), without doing any slot or 
-segment switching. This means that this way you can execute BIOS routines (if 
-the routine address is in the range 0-&H3FFF), routines loaded in BASIC RAM 
-by user (for example with BLOAD), and routines placed in page 3 system work 
-area (for example the extended BIOS hook, at address &HFFCA). Note however 
-that when this function is executed, NestorBASIC segment will be switched on 
-page 1. This implies that it is not possible to directly execute ruotines 
-placed at the BASIC interpreter ROM. To execute such routines, use the BIOS 
-routine CALBAS (&H0159), which accepts in IX the address of the BASIC 
-interpreter routine to be called.
+Если на входе P(0)=0, данная функция напрямую запустит машинный код,           
+находящийся по адресу, указанному в P(1), без каких-либо переключений слотов и 
+сегментов. Практически это означает, что так Вы можете вызывать процедуры BIOS 
+(если их адрес находится в диапазоне 0-&H3FFF), программы, загруженные в ОЗУ
+Бейсика пользователем (например, командой BLOAD), и код, расположенный в
+рабочей области системы в странице 3 (например, хук расширенного BIOS, по
+адресу &HFFCA). Заметьте, однако, что при выполнении этой функции, сегмент     
+NestorBASIC'a подключен в страницу 1. Из этого следует, что невозможно напрямую
+запустить код, находящийся в ПЗУ интерпретатора BASIC. Чтобы вызвать процедуры 
+ПЗУ Бейсика, используйте процедуру BIOS CALBAS (&H0159), которая принимает в IX
+адрес вызываемой подпрограммы интерпретатора BASIC.
 
 If P(0)<>0 at input, the SUB-BIOS routine whose address is specified in P(1) 
 will be executed; in this case, an error code -1 will be returned if an 
