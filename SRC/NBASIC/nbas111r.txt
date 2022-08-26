@@ -1890,7 +1890,7 @@ POKE &H8002,PEEK(&HF6C3)
 остался открытым, тогда в P(1) будет содержаться соответствующий номер файла.
 В противном случае, в P(1) будет -1.
 
-10.7. РАЗЛИЧНЫЕ ПРОЧИЕ ФУНКЦИИ
+10.7. ДРУГИЕ РАЗЛИЧНЫЕ ФУНКЦИИ
 
 * Функция 58: Выполнение подпрограммы в машинном коде, находящейся в BIOS, SUB-BIOS,
                основном ОЗУ BASIC'а или системной рабочей области
@@ -1899,21 +1899,21 @@ POKE &H8002,PEEK(&HF6C3)
                 основном ОЗУ BASIC'а или системной рабочей области
 	     <> 0 чтобы выполнить подпрограмму SUB-BIOS
 	 P(1) = Адрес начала подпрограммы
-	 P(2) to P(11) = Входящие регистры подпрограммы:
+	 P(2) по P(11) = Регистры ЦП на входе в подпрограмму:
 			 P(2) = AF	 P(8) = AF'
 			 P(3) = BC	 P(9) = BC'
 			 P(4) = DE	 P(10)= DE'
 			 P(5) = HL	 P(11)= HL'
 			 P(6) = IX
 			 P(7) = IY
-Output:  P(2) to P(12) = Выходные регистры подпрограммы,
-			 их назначение то же, что и у входящих,
+Выход:   P(2) по P(12) = Регистры после возврата из подпрограммы,
+			 соответствие как у входящих,
 			 плюс следующие:
 			 P(12) = A
 			 P(13) = Cy flag (-1 если установлен, 0 если нет)
 			 P(14) = Z flag (-1 если установлен, 0 если нет)
 
-С помощью этой функции можно вызвать машинные подпрограммы, расположенные в    
+С помощью этой функции можно вызвать машинную подпрограмму, расположенную в    
 BIOS, SUB-BIOS, основном ОЗУ MSX-BASIC или системной рабочей области, задав
 предварительно входные значения регистров через массив P; после возвращения
 из подпрограммы, выходные значения регистров будут помещены в массив P, в
@@ -1948,3 +1948,46 @@ BIOS-процедура EXTROM, так что входящее значение 
 использовать P(2), использование P(12) - P(14) не допускается.
 Вычислить значение, которое нужно занести в P(2), можно по следующей формуле:
 P(2) = Cy + 2*N + 4*P/V + 16*H + 64*Z + 128*M + 256*A
+
+* Функция 59: Выполнение подпрограммы пользователя
+	      (машиннокодовой подпрограммы, размещённой в сегменте ОЗУ)        
+	      
+Вход:	 P(0) = Сегмент, в котором находится подпрограмма
+	 P(1) = Адрес начала подпрограммы
+	 P(2) по P(11) = Регистры ЦП на входе в подпрограмму:
+			 P(2) = AF	 P(8) = AF'
+			 P(3) = BC	 P(9) = BC'
+			 P(4) = DE	 P(10)= DE'
+			 P(5) = HL	 P(11)= HL'
+			 P(6) = IX
+			 P(7) = IY
+Выход:   P(2) по P(12) = Регистры после возврата из подпрограммы,
+			 соответствие как у входящих,
+			 плюс следующие:
+			 P(12) = A
+			 P(13) = Cy flag (-1 если установлен, 0 если нет)
+			 P(14) = Z flag (-1 если установлен, 0 если нет)
+
+С помощью этой функции можно вызвать подпрограмму в кодах, размещённую в       
+сегменте ОЗУ, с возможностью задать значения регистров ЦП перед вызовом,
+используя массив P; после возврата из подпрограммы, выходные значения регистров
+будут помещены в массив P, в том же соответствии.
+
+The specified segment will be switched in page 2 for the execution of the 
+routine, therefore the routine must have been assembled in the addresses 
+range &H8000-&HBFFF. When the routine is executed, BIOS is connected and 
+available in page 0, and NestorBASIC segment is available in page 1. This 
+state must be restored by the routine itself before returning, if 
+segment/slot switchings are done.
+
+Some of the internal NestorBASIC routines and variables (for RAM and VRAM 
+management, and for obtaining information about the interrupt process, 
+amongst others) can be used by the user machine code routines. In appendix 2 
+you can find the list and detailed description of these routines and 
+variables.
+
+See also the function 58 description for considerations about the output 
+values of P(12) to P(14).
+
+This function does not support VRAM segments nor the segment 255, and will 
+return the error -1 if a non existent segment is specified in P(0).
