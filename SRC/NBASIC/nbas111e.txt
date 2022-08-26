@@ -2006,7 +2006,7 @@ P(2) = Cy + 2*N + 4*P/V + 16*H + 64*Z + 128*M + 256*A
 * Function 59: User machine code routine execution
 	       (machine code routine stored in a RAM segment)
 
-Input:	 P(0) = Segment in which the routine is stored
+Input:	 P(0) = Segment where the routine resides
 	 P(1) = Start address of the routine
 	 P(2) to P(11) = Input registers for the routine:
 			 P(2) = AF	 P(8) = AF'
