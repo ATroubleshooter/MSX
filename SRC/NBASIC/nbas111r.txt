@@ -1973,21 +1973,20 @@ P(2) = Cy + 2*N + 4*P/V + 16*H + 64*Z + 128*M + 256*A
 используя массив P; после возврата из подпрограммы, выходные значения регистров
 будут помещены в массив P, в том же соответствии.
 
-The specified segment will be switched in page 2 for the execution of the 
-routine, therefore the routine must have been assembled in the addresses 
-range &H8000-&HBFFF. When the routine is executed, BIOS is connected and 
-available in page 0, and NestorBASIC segment is available in page 1. This 
-state must be restored by the routine itself before returning, if 
-segment/slot switchings are done.
+Указанный сегмент будет подключен в страницу 2 для исполнения программы, для   
+чего она должна быть сассемблирована в диапазон адресов &H8000-&HBFFF. Перед
+выполнением подпрограммы, BIOS будет подключен в страницу 0, а сегмент
+NestorBASIC'a в страницу 1. Перед возвратом из пользовательской подпрограммы,  
+это состояние должно быть восcтановлено ей же самой, если осуществлялось
+какое-либо переключение слотов/сегментов.
 
-Some of the internal NestorBASIC routines and variables (for RAM and VRAM 
-management, and for obtaining information about the interrupt process, 
-amongst others) can be used by the user machine code routines. In appendix 2 
-you can find the list and detailed description of these routines and 
-variables.
+Некоторые из внутренних процедур и переменных NestorBASIC'a (для управления RAM
+и VRAM, и получения информации о прерываниях, среди прочего) могут
+использоваться пользовательскими подпрограммами в кодах. В приложении 2 
+вы можете найти список и подробное описание этих процедур и переменных.
 
-See also the function 58 description for considerations about the output 
-values of P(12) to P(14).
+Смотрите также описание функции 58 по поводу замечаний относительно
+возвращаемых значений P(12) - P(14).
 
-This function does not support VRAM segments nor the segment 255, and will 
-return the error -1 if a non existent segment is specified in P(0).
+Эта функция не поддерживает сегменты VRAM и 255 сегмент, и выдаст ошибку -1,
+если несуществующий сегмент указан в P(0).
