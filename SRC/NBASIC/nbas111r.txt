@@ -1998,10 +1998,9 @@ NestorBASIC'a в страницу 1. Перед возвратом из поль
 
 Эта функция работает только в видеорежимах со SCREEN 5 по 11, и эквивалентна   
 команде PRINT#1,F$(0), предварённой командой OPEN"GRP:"AS#1. Разница в том,
-что данная функция совместима с X-BASIC. If executed in 
-other graphic modes this function will do nothing, but will never return an 
-error.
+что данная функция совместима с X-BASIC. При вызове в других видеорежимах,
+эта функция не будет делать ничего, но не выдаст никакой ошибки.
 
-The maximum length of the string is 80 characters; if F$(0) is larger, only 
-the first 80 characters will be printed. The string can't contain any 
-character 0, because this code is interpreted as the end of the string.
+Максимальная длина строки - 80 символов; если F$(0) больше, только первые 80   
+символов будут выведены. Строка не может содержать символа 0, потому что 
+этот код интерпретируется как конец строки.
