@@ -2071,11 +2071,11 @@ Input:	 F$(0) = String
 	 P(2)  = Increase P(1) if <>0
 Output:  P(1)  = P(1) + LEN(F$(0)) + 1 if P(2)<>0
 
-This function copies the string F$(0) to the specified address of the 
+This function copies the string F$(0) to the specified address of the       
 specified segment. The string is stored with a character 0 at the end, so 
 LEN(F$(0))+1 bytes will be occuped.
 
-The maximum length of the string is 80 characters; if F$(0) is largest, only 
+The maximum length of the string is 80 characters; if F$(0) is longer, only 
 the first 80 characters will be copied. The string can't contain any 
 character 0, because this code is interpreted as the end of the string.
 
