@@ -2063,7 +2063,7 @@ the first 80 characters will be printed. The string can't contain any
 character 0, because this code is interpreted as the end of the string.
 
 
-* Function 61: Store a string in a segment
+* Function 61: Store string in a segment
 
 Input:	 F$(0) = String
 	 P(0)  = Segment
@@ -2083,7 +2083,7 @@ This function will return the error -1 if a non exisiting segment is
 specified in P(0).
 
 
-* Function 62: Restore a string stored in a segment
+* Function 62: Retrieve string from a segment
 
 Input:	 P(0)  = Segment
 	 P(1)  = Begin address
