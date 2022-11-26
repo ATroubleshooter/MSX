@@ -2091,7 +2091,7 @@ Input:	 P(0)  = Segment
 Output:  F$(1) = String
 	 P(1)  = P(1) + LEN(F$(1)) + 1 if P(2)<>0
 
-This function sets in F$(1) the string stored from the specified address of 
+This function puts to F$(1) the string stored at the specified address of 
 the specified segment. The string is considered finished when a 0 character 
 is found, or when 80 characters have been copied to F$(1).
 
