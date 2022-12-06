@@ -2041,3 +2041,45 @@ NestorBASIC'a в страницу 1. Перед возвратом из поль
 функции из X-BASIC.
 
 Эта функция вернет ошибку -1, если в P(0) будет указан несуществующий сегмент. 
+
+* Функция 63: Инициализация режима мигания в SCREEN 0
+
+Вход:	 P(0) = Цвет "мигнувшего" текста
+	 P(1) = Цвет "мигнувшего" фона
+	 P(2) = Протяженность "включенного" состояния (0 to 15)
+	 P(3) = Протяженность "выключенного" состояния (0 to 15)
+		Если P(2) и P(3) оба равны нулю 0, эта функция
+		просто очищает зону мигания в VRAM
+Выход:   -
+
+Эта функция инициализирует цвета и интервалы режима мигания в SCREEN 0,        
+и очищает область VRAM, предназначенную для хранения координат мигающих
+знакомест. Если P(2) и P(3) нулевые, то будет выполнено только последнее.      
+
+This function can only be used in SCREEN 0 mode with at least 41 columns; 
+otherwise, nothing will be done, and the error -1 will be returned.
+
+Actions done by this function can alse be done separately from BASIC, in the 
+following way:
+
+- Colors setting:
+
+VDP(13) = Foreground color+ 16*Background color
+
+- Times setting:
+
+VDP(14) = Time ON + 16*Time OFF
+
+- Clear VRAM:
+
+Fill with zeros the 256 bytes VRAM zone beginning at &H0A00
+
+System variables FORCLR (&HF3E9) and BAKCLR (&HF3EA) contain respectively the 
+current foreground color and background color previously set with the COLOR 
+statement. Thus, for obtain an inverse video effect just do:
+
+P(0)=PEEK(&HF3EA):P(1)=PEEK(&HF3E9):P(2)=15:P(3)=0:?USR(63)
+
+or
+
+VDP(13)=PEEK(&HF3EA)+16*PEEK(&HF3E9):VDP(14)=&HF0
