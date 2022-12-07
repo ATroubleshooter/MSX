@@ -2056,30 +2056,31 @@ NestorBASIC'a в страницу 1. Перед возвратом из поль
 и очищает область VRAM, предназначенную для хранения координат мигающих
 знакомест. Если P(2) и P(3) нулевые, то будет выполнено только последнее.      
 
-This function can only be used in SCREEN 0 mode with at least 41 columns; 
-otherwise, nothing will be done, and the error -1 will be returned.
+Эта функция может исполняться только в режиме SCREEN 0 с как минимум 41        
+столбцами; в противном случае, ничего не будет сделано, кроме возврата         
+ошибки -1.
 
-Actions done by this function can alse be done separately from BASIC, in the 
-following way:
+Действия, которые реализуются этой функцией, могут быть также выполнены        
+независимо, из Бейсика, следующим образом:
 
-- Colors setting:
+- Установка цветов:
 
-VDP(13) = Foreground color+ 16*Background color
+VDP(13) = Цвет текста + 16*Цвет фона
 
-- Times setting:
+- Установка интервалов:
 
-VDP(14) = Time ON + 16*Time OFF
+VDP(14) = Протяженность "включенного" состояния + 16*Протяженность "выключенного" состояния
 
-- Clear VRAM:
+- Очищение области VRAM:
 
-Fill with zeros the 256 bytes VRAM zone beginning at &H0A00
+Заполнение нулями 256-байтной области VRAM, которая начинается с адреса &H0A00 
 
-System variables FORCLR (&HF3E9) and BAKCLR (&HF3EA) contain respectively the 
-current foreground color and background color previously set with the COLOR 
-statement. Thus, for obtain an inverse video effect just do:
+Системные переменные FORCLR (&HF3E9) и BAKCLR (&HF3EA) содержат соответственно 
+текущий цвет текста и текущий цвет фона, ранее установленные оператором COLOR. 
+Таким образом, чтобы достичь визуального эффекта инверсии, просто выполните:
 
 P(0)=PEEK(&HF3EA):P(1)=PEEK(&HF3E9):P(2)=15:P(3)=0:?USR(63)
 
-or
+или
 
 VDP(13)=PEEK(&HF3EA)+16*PEEK(&HF3E9):VDP(14)=&HF0
