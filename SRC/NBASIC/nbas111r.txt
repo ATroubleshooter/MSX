@@ -2123,8 +2123,48 @@ VDP(13)=PEEK(&HF3EA)+16*PEEK(&HF3E9):VDP(14)=&HF0
 	 P(5) = -1 если воспроизводится музыка
 
 P(2) и P(3) вернут сегмент и адрес прерывания, определяемого пользователем, даже
-если оно приостановлено. Если пользовательского прерывания не было определено,        
+если оно приостановлено. Если пользовательского прерывания не было определено,  
 оба параметра будут нулевыми.
 
 Чтобы получить больше информации о воспроизводимом звуковом эффекте, используйте
 функцию 67. Для музыки, используйте функцию 72.
+
+* Функция 66: Задать или приостановить прерывание, определяемое пользователем   
+
+Вход:	 P(0) =  0 для приостановки действующего пользовательского прерывания   
+                 1 задать и запустить пользовательское прерывание
+		-1 инвертировать текущее состояние пользовательского прерывания
+		   (запущено <--> остановлено)
+	 P(1) = Сегмент прерывания пользователя (игнорируется, если P(0)<>1)
+	 P(2) = Адрес прерывания пользователя (игнорируется, если P(0)<>1)
+Выход:   -
+
+Эта функция задает или останавливает программу, работающую от определяемого     
+пользователем прерывания, то есть, программа в машинном коде, которая будет     
+запускаться при каждом прерывании от таймера, 50 или 60 раз в секунду.
+Указанный сегмент будет подключен в страницу 2 для исполнения программы, а      
+следовательно, код должен быть собран под адреса в интервале &H8000-&HBFFF.     
+
+If P(0)=1, the interrupt is defined by P(1) and P(2), and is activated (from 
+this moment, it is executed to 50 or 60 Hz). If P(0)=0, the interrupt is 
+stopped (it is no longer executed), but its definition is not changed. If 
+P(0)=-1, the current status is reversed (actived to stopped and vice-versa), 
+and its definition is not changed.
+
+Interrupt segment is switched in page 2 for execution, so the code must be 
+assembled in the address range &H8000-&HBFFF. BIOS is switched and available 
+in page 0, and NestorBASIC segment is available in page 1. This state must be 
+restored by the routine itself before returning, if segment/slot switchings 
+are done. Also, the interrupts will be disabled and must be in this state 
+during the routine execution. No register preservations are needed, because 
+NestorBASIC handles this.
+
+Some of the internal NestorBASIC routines and variables (for RAM and VRAM 
+management, and for obtaining information about the interrupt process, 
+amongst others) can be used by the user interrupt routines. In appendix 2 you 
+will found the list and detailed description of these routines and variables.
+
+You can't define an user interrupt routine in a VRAM segment, nor in the 
+segment 255. If you specify non existent or invalid segment in P(1) the 
+function will return an error -1. If you specify a parameter other than 0, 1 
+or -1 in P(0), an error 7 will be returned.
