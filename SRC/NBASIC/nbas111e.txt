@@ -2227,7 +2227,7 @@ NestorBASIC handles this.
 Some of the internal NestorBASIC routines and variables (for RAM and VRAM 
 management, and for obtaining information about the interrupt process, 
 amongst others) can be used by the user interrupt routines. In appendix 2 you 
-will found the list and detailed description of these routines and variables.
+will find the list and detailed description of these routines and variables.
 
 You can't define an user interrupt routine in a VRAM segment, nor in the 
 segment 255. If you specify non existent or invalid segment in P(1) the 
