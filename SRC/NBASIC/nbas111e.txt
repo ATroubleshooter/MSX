@@ -2028,7 +2028,7 @@ array P; after the execution, the registers output contents will also be set
 in the array P in the same way.
 
 The specified segment will be switched in page 2 for the execution of the 
-routine, therefore the routine must have been assembled in the addresses 
+routine, therefore the routine has to be assembled in the addresses 
 range &H8000-&HBFFF. When the routine is executed, BIOS is connected and 
 available in page 0, and NestorBASIC segment is available in page 1. This 
 state must be restored by the routine itself before returning, if 
@@ -2207,7 +2207,7 @@ Output:  -
 This function defines or stops an user defined interrupt routine, that is, a 
 machine code routine that will be executed in each timer interrupt, 50 or 60 
 times per second. The specified segment will be switched in page 2 for the 
-execution of the routine, therefore the routine must have been assembled in 
+execution of the routine, therefore the routine has to be assembled in 
 the addresses range &H8000-&HBFFF.
 
 If P(0)=1, the interrupt is defined by P(1) and P(2), and is activated (from 
@@ -2249,8 +2249,8 @@ Output:  P(1) = -1 if a sound effect is being played
 	 P(7) = Maximum volume
 
 The results returned by this function will only be valid if the sound effects 
-set has been initialized with function 68. The sound effects set must have 
-been created with the editor SEE v3.xx, developped by Fuzzy Logic.
+set has been initialized with function 68. The sound effects set has to be
+created with the editor SEE v3.xx, developped by Fuzzy Logic.
 
 This function never returns error. If the value specified in P(0) is greater 
 than 15, it will be interpreted as 15.
@@ -2265,7 +2265,7 @@ Output:  -
 This function initializes the sound effects set stored in the specified 
 segment and address, leaving it ready for use with function 69.
 
-The sound effects set must have been created with the editor SEE v3.xx, by 
+The sound effects set has to be created with the editor SEE v3.xx, by 
 Fuzzy Logic; if the set format is invalid, the function will return the error 
 code 8.
 
@@ -2281,7 +2281,7 @@ Input:	 P(0) = Effect number
 Output:  -
 
 This function begins the playback of the specified sound effect; the sound 
-effects set must have been created with the editor SEE v3.xx, by Fuzzy Logic. 
+effects set has to be created with the editor SEE v3.xx, by Fuzzy Logic. 
 If the sound effects set has not been initialized with function 68, the 
 result is unpredictable.
 
