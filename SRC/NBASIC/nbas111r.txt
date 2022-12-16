@@ -2206,3 +2206,30 @@ SFX был инициализирован функцией 68. Набор эфф
 
 Не допускается использование набора SFX, находящегося в сегменте VRAM или 255-м 
 сегменте. Если в P(0) был указан несуществующий сегмент, произойдет ошибка -1.
+
+* Функция 69: Воспроизвести звуковой эффект PSG
+
+Вход:	 P(0) = Номер эффекта
+	 P(1) = Приоритет (0: низкий, <>0: высокий)
+Выход:   -
+
+Эта функция запускает проигрывание указанного SFX эффекта; набор эффектов       
+создается с помощью редактора SEE v3.xx, созданного Fuzzy Logic. 
+Если набор SFX не был инициализирован функцей 68, то поведение 
+непредсказуемо.
+
+P(1) handles the priority in the case of executing this function when
+another sound effect is being played, in the following way:
+
+- If the SFX being played and the new one have the same priority, the SFX 
+being played is stopped, and the new one is played.
+- If the SFX being played has low priority and the new one has high 
+priority, same as above occurs.
+- If the SFX being played has high priority and the new one has low
+priority, the old SFX keeps being played, and the function returns the 
+error code 11.
+
+If the sound effect specified in P(0) is not defined (the first track is left 
+to "OFF" in the editor), the function will return the error code 9. If the 
+effect does not exist (its number is higher than the maximum effect number), 
+the function will return the error code 10.
