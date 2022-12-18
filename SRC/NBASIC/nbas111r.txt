@@ -2218,18 +2218,17 @@ SFX был инициализирован функцией 68. Набор эфф
 Если набор SFX не был инициализирован функцей 68, то поведение 
 непредсказуемо.
 
-P(1) handles the priority in the case of executing this function when
-another sound effect is being played, in the following way:
+P(1) управляет приоритетом в случае попытки воспроизвести эффект, когда уже     
+воспроизводится другой. Это работает следующим образом:
 
-- If the SFX being played and the new one have the same priority, the SFX 
-being played is stopped, and the new one is played.
-- If the SFX being played has low priority and the new one has high 
-priority, same as above occurs.
-- If the SFX being played has high priority and the new one has low
-priority, the old SFX keeps being played, and the function returns the 
-error code 11.
+- Если новый и уже воспроизводимый SFX имеют одинаковый приоритет, то           
+воспроизводимый SFX останавливается, и проигрывается новый.
+- Если воспроизводимый SFX имеет низкий приоритет, а новый - высокий, то        
+происходит то же самое.
+- Если воспроизводимый SFX имеет высокий приоритет, а новый SFX - низкий, то    
+старый SFX продолжает звучать, и функция возвращает ошибку 11.
 
-If the sound effect specified in P(0) is not defined (the first track is left 
-to "OFF" in the editor), the function will return the error code 9. If the 
-effect does not exist (its number is higher than the maximum effect number), 
-the function will return the error code 10.
+Если звуковой эффект, указанный в P(0), не определен (первый трэк установлен в  
+"OFF" в редакторе), функция вернет код ошибки 9. Если эффект не существует
+(его номер больше, чем последний определенный номер эффекта), функция вернет код
+ошибки 10.
