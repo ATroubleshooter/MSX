@@ -2324,7 +2324,7 @@ Input:	 P(0)  = Player to be loaded:
 		    otherwise load Moonblaster 1.4 player.
                 -1: Remove the resident player
 Output:  P(0)  = Player loaded (0, 1 or -1, as above).
-Output:  P(1)  = -1 -> No error
+         P(1)  = -1 -> No error
 	      <> -1 -> A disk error occurred, and NBASIC.BIN remains open
 		       with this number; look at the value returned by the
 		       USR command for the error code, as usual.
