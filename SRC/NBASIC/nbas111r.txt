@@ -2240,3 +2240,53 @@ P(1) управляет приоритетом в случае попытки в
 
 Эта функция останавливает воспроизведение звукового эффекта PSG, если таковой   
 проигрывался, и заглушает PSG. Функция не выдает ошибок.
+
+10.9. ФУНКЦИИ ДЛЯ ВОСПРОИЗВЕДЕНИЯ МУЗЫКИ В ФОРМАТЕ MOONBLASTER
+
+* Функция 71: Загрузка и инициализация или выгрузка
+	       Moonblaster-плеера (S4)
+
+Вход:	 P(0)  = Какой плеер загрузить:
+		 0: Moonblaster 1.4
+		 1: Moonblaster Wave 1.05
+		 3: Автоопределение:
+		    Загрузить плеер Moonblaster Wave если присутствует Moonsound,
+		    иначе загрузить Moonblaster 1.4 .
+                -1: Выгрузить загруженный в текущий момент проигрыватель
+Выход:   P(0)  = Загруженный плеер (0, 1 или -1, как выше).
+         P(1)  = -1 -> Нет ошибки
+	      <> -1 -> Произошла ошибка диска, и NBASIC.BIN остался открытым
+		       под этим номером; код ошибки возвращается командой
+		       USR, как обычно.
+
+This function loads the specified Moonblaster player in segment 5, leaving 
+it ready for use. Also, searches for all the existing sound chips in the 
+system, and leaves all the found chips enabled (see function 73 for more 
+details about the sound chips activation).
+
+The player can only be loaded if the segment 5 exists and belongs to the 
+primary mapper; otherwise, the function will return the error -1. If a disk 
+error occurs, the function will return the appropriate error code (see 
+section 4). If NBASIC.BIN remains opened due to a disk error, its associated 
+file number will be returned in P(1); otherwise, P(1) will be -1.
+
+NBASIC.BIN file contains two versions of the Moonblaster Wave player: one 
+is for MSX2/2+ and Turbo-R in Z80 mode, and the other is for Turbo-R in R800 
+mode. If the computer is a Turbo-R, NestorBASIC decides the version to be 
+loaded according to the processor switched when function 71 is called. Note 
+that if a processor change is performed, this function must be called again 
+in order to load the appropriate player: Z80 version does not work in R800 
+mode, and R800 version makes the system slower in Z80 mode.
+
+To unload the player, use this function with P(0)=-1 at input; you don't 
+need to previously stop any music being played, since the function itsef 
+will do this task. After player removal (which just performs erasing the 
+string "NestorPlayer" placed at the start of segment 5), segment 5 becomes 
+available again, just like any other segment. If you try to unload the 
+player when no player is actually loaded, the function will do nothing, 
+and no error will be returned.
+
+You can load, remove, and load again the Moonblaster player as many 
+times as necessary during the program execution. If there's a player already
+loaded, it can be easily removed to be replaced by another one, which is
+quite convenient.
