@@ -2243,8 +2243,7 @@ P(1) управляет приоритетом в случае попытки в
 
 10.9. ФУНКЦИИ ДЛЯ ВОСПРОИЗВЕДЕНИЯ МУЗЫКИ В ФОРМАТЕ MOONBLASTER
 
-* Функция 71: Загрузка и инициализация или выгрузка
-	       Moonblaster-плеера (S4)
+* Функция 71: Загрузка и инициализация или выгрузка Moonblaster-плеера (S4)     
 
 Вход:	 P(0)  = Какой плеер загрузить:
 		 0: Moonblaster 1.4
@@ -2259,10 +2258,10 @@ P(1) управляет приоритетом в случае попытки в
 		       под этим номером; код ошибки возвращается командой
 		       USR, как обычно.
 
-This function loads the specified Moonblaster player in segment 5, leaving 
-it ready for use. Also, searches for all the existing sound chips in the 
-system, and leaves all the found chips enabled (see function 73 for more 
-details about the sound chips activation).
+Эта функция загружает указанный Moonblaster-плеер в сегмент 5, оставляя готовым 
+к использованию. Также, производит поиск всех присутствующих в системе звуковых
+чипов, и оставляет все найденные чипы включенными (см. функцию 73, чтобы узнать 
+больше подробностей об активации звуковых чипов).
 
 The player can only be loaded if the segment 5 exists and belongs to the 
 primary mapper; otherwise, the function will return the error -1. If a disk 
