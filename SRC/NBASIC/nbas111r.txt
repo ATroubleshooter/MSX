@@ -2263,19 +2263,19 @@ P(1) управляет приоритетом в случае попытки в
 чипов, и оставляет все найденные чипы включенными (см. функцию 73, чтобы узнать 
 больше подробностей об активации звуковых чипов).
 
-The player can only be loaded if the segment 5 exists and belongs to the 
-primary mapper; otherwise, the function will return the error -1. If a disk 
-error occurs, the function will return the appropriate error code (see 
-section 4). If NBASIC.BIN remains opened due to a disk error, its associated 
-file number will be returned in P(1); otherwise, P(1) will be -1.
+Проигрыватель может быть загружен только если сегмент 5 существует и принадлежит
+первичному мапперу; в противном случае, функция выдаст ошибку -1. Если случается
+дисковая ошибка, функция возвращает соответствующий код ошибки (см. раздел 4).  
+Если NBASIC.BIN в результате ошибки остается открытым, его соответствующий номер
+файла будет в P(1); иначе, P(1) будет -1.
 
-NBASIC.BIN file contains two versions of the Moonblaster Wave player: one 
-is for MSX2/2+ and Turbo-R in Z80 mode, and the other is for Turbo-R in R800 
-mode. If the computer is a Turbo-R, NestorBASIC decides the version to be 
-loaded according to the processor switched when function 71 is called. Note 
-that if a processor change is performed, this function must be called again 
-in order to load the appropriate player: Z80 version does not work in R800 
-mode, and R800 version makes the system slower in Z80 mode.
+Файл NBASIC.BIN содержит две версии плеера Moonblaster Wave: одна из них -      
+для MSX2/2+ и Turbo-R в режиме Z80, а другая - для Turbo-R в режиме R800.
+Если компьютер является Turbo-R, то NestorBASIC решает, какую версию загрузить  
+в зависимости от работающего процессора в момент вызова функции 71. Заметьте,   
+что если произведено переключение процессора, эта функция должна быть вызвана   
+снова чтобы загрузить подходящий плеер: версия для Z80 не работает в режиме     
+R800, а версия для R800 тормозит систему в режиме Z80.
 
 To unload the player, use this function with P(0)=-1 at input; you don't 
 need to previously stop any music being played, since the function itsef 
