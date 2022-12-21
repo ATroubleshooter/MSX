@@ -2275,17 +2275,15 @@ P(1) управляет приоритетом в случае попытки в
 в зависимости от работающего процессора в момент вызова функции 71. Заметьте,   
 что если произведено переключение процессора, эта функция должна быть вызвана   
 снова чтобы загрузить подходящий плеер: версия для Z80 не работает в режиме     
-R800, а версия для R800 тормозит систему в режиме Z80.
+R800, а версия для R800 привносит замедление в режиме Z80.
 
-To unload the player, use this function with P(0)=-1 at input; you don't 
-need to previously stop any music being played, since the function itsef 
-will do this task. After player removal (which just performs erasing the 
-string "NestorPlayer" placed at the start of segment 5), segment 5 becomes 
-available again, just like any other segment. If you try to unload the 
-player when no player is actually loaded, the function will do nothing, 
-and no error will be returned.
+Чтобы выгрузить плеер, используйте эту функцию с P(0)=-1 на входе; Вам не нужно 
+предварительно останавливать воспроизводимую музыку, так как функция позаботится
+об этом сама. После выгрузки проигрывателя (которая заключается просто в
+удалении строки "NestorPlayer" в начале сегмента 5), сегмент 5 снова становится 
+доступным, как любой другой. Если Вы попытаетесь выгрузить проигрыватель когда  
+никакой плеер не загружен, функция не сделает ничего и не выдаст никакой ошибки.
 
-You can load, remove, and load again the Moonblaster player as many 
-times as necessary during the program execution. If there's a player already
-loaded, it can be easily removed to be replaced by another one, which is
-quite convenient.
+Можно загружать, выгружать и загружать снова Moonblaster-плееры столько раз,    
+сколько понадобится, в ходе выполнения программы. Если какой-то проигрыватель   
+загружен, его легко можно заменить на другой, что очень удобно.
