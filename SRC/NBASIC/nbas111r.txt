@@ -2314,18 +2314,18 @@ R800, а версия для R800 привносит замедление в р�
 	 F$(1)= Имя Samplekit'а или wavekit'а (пустая строка, если никакая      
 	 музыка не проигрывается)
 
-If there's no Moonblaster player loaded, P(12) will be zero, the other results 
-will not be set (except for P(9) to P(11)); the function will not return any 
-error. Use function 71 to initialize the player.
+Если не загружен никакой плеер, в P(12) будет ноль, остальные выходные параметры
+не будут выставлены (кроме P(9) - P(11)); функция не возвращает никаких ошибок.
+Для загрузки плеера используйте функцию 71.
 
-If no tune is being played, P(5) and P(6) will return the position and the 
-step where the last played tune was stopped, and F$(0) and F$(1) will 
-be empty strings. Otherwise, F$(0) will return the songname (always 40 
-characters for Moonblaster 1.4 musics, 50 for Moonblaster Wave musics) and 
-F$(1) will return the samplekit or wavekit that was loaded in Moonblaster 
-when the music was saved, in capital letters and without extension ("NONE" if 
-there was no samplekit loaded).
+Если никакая музыка не воспроизводится, в P(5) и P(6) будут возвращены позиция и
+шаг, где последняя проигрываемая мелодия была остановлена, а F$(0) и F$(1) будут
+пустыми строками. В противном случае, в F$(0) будет содержаться имя мелодии
+(всегда 40 символов для музыки Moonblaster 1.4, 50 для музыки Moonblaster Wave) 
+F$(1) будет содержить имя samplekit'а или wavekit'а, который был загружен в
+Moonblaster на момент сохранения композиции, заглавными буквами и без расширения
+("NONE", если никакого samplekit'а не было загружено).
 
-P(9) to P(11) return information about the detected sound chips, even when no 
-player is loaded. To obtain information about the enabled sound chips, use 
-function 73.
+В P(9) - P(11) возвращается информация о обнаруженных аудиочипах, даже когда    
+проигрыватель не загружен. Чтобы узнать информацию об активных аудиочипах,      
+используйте функцию 73.
