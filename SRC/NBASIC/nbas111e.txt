@@ -2449,7 +2449,7 @@ present will be ignored. If MSX-AUDIO and MSX-MUSIC are both disabled
 player), function 74 (start the playback of a tune) will do nothing but 
 will not return error.
 
-The changes done with this function will have not effect until the currently 
+The changes done with this function will have no effect until the currently 
 being played music is stopped (function 75 or 77) and restarted (function 
 74). If no music is being played when you use this function, just start the 
 music and you will note the changes.
