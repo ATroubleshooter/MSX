@@ -2334,53 +2334,53 @@ Moonblaster на момент сохранения композиции, заг�
 * Функция 73: Активация и деактивация звуковых устройств
 
 Вход:	 P(0) = 0 -> Только запросить информацию
-		1 -> Enable or disable chips according to P(1) to P(3)
-		2 -> Enable all the found sound chips
-	 P(1) = 0 -> Don't modify MSX-MUSIC status
-		1 -> Disable MSX-MUSIC
-		2 -> Enable MSX-MUSIC
-	       -1 -> Reverse MSX-MUSIC status
-	 P(2) = 0 -> Don't modify MSX-AUDIO status
-		1 -> Disable MSX-AUDIO
-		2 -> Enable MSX-AUDIO
-	       -1 -> Reverse MSX-AUDIO status
-	 P(3) = 0 -> Don't modify OPL4 status
-		1 -> Disable OPL4
-		2 -> Enable OPL4
-	       -1 -> Reverse OPL4 status
-Выход:   P(4) = 0 -> MSX-MUSIC not found
-		1 -> MSX-MUSIC found but disabled
-		2 -> MSX-MUSIC enabled
-	 P(5) = 0 -> MSX-AUDIO not found
-		1 -> MSX-AUDIO found but disabled
-		2 -> MSX-AUDIO enabled
-	 P(6) = 0 -> OPL4 not found
-		1 -> OPL4 found but disabled
-		2 -> OPL4 enabled
+		1 -> Включить или выключить устройства согласно P(1) - P(3)
+		2 -> Включить все найденные звуковые устройства
+	 P(1) = 0 -> Не менять состояние MSX-MUSIC
+		1 -> Отключить MSX-MUSIC
+		2 -> Включить MSX-MUSIC
+	       -1 -> Инвертировать состояние MSX-MUSIC
+	 P(2) = 0 -> Не менять состояние MSX-AUDIO
+		1 -> Отключить MSX-AUDIO
+		2 -> Включить MSX-AUDIO
+	       -1 -> Инвертировать состояние MSX-AUDIO
+	 P(3) = 0 -> Не менять состояние OPL4
+		1 -> Отключить OPL4
+		2 -> Включить OPL4
+	       -1 -> Инвертировать состояние OPL4
+Выход:   P(4) = 0 -> MSX-MUSIC отсутствует
+		1 -> MSX-MUSIC присутствует, но отключен
+		2 -> MSX-MUSIC включен
+	 P(5) = 0 -> MSX-AUDIO отсутствует
+		1 -> MSX-AUDIO присутствует, но отключен
+		2 -> MSX-AUDIO включен
+	 P(6) = 0 -> OPL4 отсутствует
+		1 -> OPL4 присутствует, но отключен
+		2 -> OPL4 включен
 
-This function allows to disable and enable MSX-MUSIC, MSX-AUDIO and OPL4, 
-which in such state will not be used, even if they are found in the system. 
-This feature can be useful, for example, for hearing only the MSX-AUDIO part 
-of the tune in a computer with internal MSX-MUSIC.
+Эта функция позволяет отключать MSX-MUSIC, MSX-AUDIO и OPL4, которые, в этом    
+состоянии, не будут использоваться, несмотря на то, что были обнаружены в       
+системе. Эта возможность будет полезна, например, для прослушивания только
+MSX-AUDIO-части композиции на компьютере со встроенным MSX-MUSIC.
 
-If P(0)=0, the function will only return information about the enabled sound 
-chips in P(4) to P(5), and will not change the current status of the chips. 
-If P(0)=2, all the found chips will be enabled (this is the default state 
-when the player is initialized). To obtain information about the found 
-sound chips use function 72.
+Если P(0)=0, функция только выдаст сведения об активных звуковых устройствах    
+в P(4) - P(5), и не изменит их состояние. Если P(0)=2, все найденные звуковые   
+устройства будут включены (это действие по-умолчанию при загрузке плеера).
+Для получения сведений о присутствии звуковых устройств используйте функцию 72. 
 
-If P(0)=1, the different sound chips will be enabled or disabled according to 
-the values passed in P(1) to P(3); attempts to enable chips that are not 
-present will be ignored. If MSX-AUDIO and MSX-MUSIC are both disabled 
-(Moonblaster 1.4 player) or if OPL4 is disabled (Moonblaster Wave 
-player), function 74 (start the playback of a tune) will do nothing but 
-will not return error.
+Если P(0)=1, звуковые устройства будут активированы либо отключены согласно     
+значениям, переданным в P(1) - P(3); попытки активировать устройства, которые   
+отсутствуют в системе, будут проигнорированы. Если отключен и MSX-AUDIO, и      
+MSX-MUSIC (Moonblaster 1.4 player), или отключен OPL4 (Moonblaster Wave player),
+функция 74 (старт проигрывания музыки) не будет ничего делать, но не выдаст     
+никакой ошибки.
 
-The changes done with this function will have not effect until the currently 
-being played music is stopped (function 75 or 77) and restarted (function 
-74). If no music is being played when you use this function, just start the 
-music and you will note the changes.
+Изменения, сделанные этой функцией, не вступят в силу, пока играющая музыка     
+не будет остановлена (функция 75 или 77), и запущена по новой (функция 74).     
+Если никакой музыки не воспроизводилось в момент, когда Вы использовали данную  
+функцию, просто стартуйте воспроизведение, обычным образом.
 
-This function will return the error code 7 if any of the input parameters is 
-invalid (but if P(0)<>1 you don't need to set P(1) to P(3)), and error code 
-12 if the player is not loaded.
+Эта функция вернет код ошибки 7, если какой-либо из входящих параметров не      
+корректен (но если P(0)<>1, не требуется устанавливать P(1) - P(3)), и код      
+ошибки 12, если плеер не загружен.
+
