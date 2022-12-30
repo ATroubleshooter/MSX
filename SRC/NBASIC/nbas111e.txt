@@ -2480,7 +2480,7 @@ the specified address a Moonblaster music saved in USER format begins, and
 the playback starts without further checkings. If the specified RAM area does 
 not contain a Moonblaster music, the result is unpredictable.
 
-Moonblaster Wave rapleyer has not these restrictions: it can detect if data 
+Moonblaster Wave player has no such restrictions: it can detect if data      
 in the specified address is really a Moonblaster music, and if it is saved in 
 USER mode. If not, error 13 is returned.
 
