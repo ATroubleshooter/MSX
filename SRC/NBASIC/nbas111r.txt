@@ -2433,5 +2433,29 @@ OPL4 был деактивирован (музыка Moonblaster Wave) функ�
 
 Эта функция приостанавливает или возобновляет воспроизведение Moonblaster-музыки.
 Если никакая музыка не воспроизводится и не стоит на паузе, или проигрыватель не
-загружен, функция не будет ничего делать и не выдаст никакой ошибки. Если
-входной параметр недействителен, будет возврашена ошибка с кодом 7.
+загружен, функция не будет ничего делать и не выдаст никакой ошибки. Если       
+входной параметр недействителен, будет возвращена ошибка с кодом 7.
+
+* Функция 77: Постепенное затухание музыки
+
+Вход:	 P(0) = 0      -> Только запросить информацию
+		-1     -> Приостановить затухание
+		1..254 -> Начать/продолжить затухание с заданным интервалом
+Выход:   P(1) = -1 если музыка в процессе затухания
+	 P(2) = Интервал происходящего затухания
+	        (-1 если затухание приостановлено)
+
+This function begins to fade out the music being played. The delay means 
+the number of clock cycles (of 1/50 or 1/60 seconds each) between fade 
+steps, so the smallest is the delay, the faster is the fade. Once the fade is 
+completed (the music main volume decreases to zero), the music will be 
+automatically stopped: you don't need to stop it by yourself with function 
+75.
+
+If P(0)=-1 the fade will be paused, that is, the music will remain being 
+normally played with the reached volume. To continue the fade, just execute 
+again this function, specifying a new delay in P(0).
+
+If P(0)=0, this function will only set P(1) and P(2) with the specified 
+information. If no music is being played, or if the player was not 
+initialized, this function will do nothing. It never returns error.
