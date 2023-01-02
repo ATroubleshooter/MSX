@@ -2523,9 +2523,9 @@ Output:  P(1) = -1 if tune is being faded
 
 This function begins to fade out the music being played. The delay means 
 the number of clock cycles (of 1/50 or 1/60 seconds each) between fade 
-steps, so the smallest is the delay, the faster is the fade. Once the fade is 
-completed (the music main volume decreases to zero), the music will be 
-automatically stopped: you don't need to stop it by yourself with function 
+steps, so the less is the delay, the faster is the fade. Once the fade is 
+complete (the music main volume decreases to zero), the music will be 
+automatically stopped: you don't need to stop it explicitly with function 
 75.
 
 If P(0)=-1 the fade will be paused, that is, the music will remain being 
