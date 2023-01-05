@@ -2562,7 +2562,7 @@ P(7). If this number is greater than 16K, it means that only the first 16K of
 the samplekit have been transferred to sample-RAM. If less, it means that no  
 data at all have been transferred to sample-RAM.
 
-If player was not initialized or no Music Module was found, this functon      
+If player was not initialized or no Music Module was found, this function     
 will do nothing, but will not return error. If the whole samplekit is
 successfully loaded, P(7) will contain -32712, not 32824, due to the BASIC 
 integer variables range (-32768 to 32767).
