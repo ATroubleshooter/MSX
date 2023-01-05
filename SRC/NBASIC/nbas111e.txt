@@ -2544,27 +2544,27 @@ Output:  P(7) = Number of bytes read
 
 This function loads from the specified opened file Music Module's samplekit, 
 which must be saved in the Moonblaster format: 56 header bytes, which will be 
-copied into the appropriate zone of the player; and 32K of samples, which 
+copied into the appropriate field of the player; and 32K of samples, which 
 will be transferred to the Music Module sample-RAM.
 
-Data will be read from a previously opened file. This feature allows you to 
-concatenate the samplekit with other useful data in a single data file: in 
-such case, just move the file pointer to the appropriate point, and execute 
-this function. However, in the most common case you will need to load a MBK 
-file generated with Moonblaster. In such case, you can load the samplekit by 
+Data will be read from a previously opened file. This feature allows you to   
+concatenate the samplekit with other useful data in a single data file: in    
+such a case, just move the file pointer to the appropriate point, and execute 
+this function. However, in the most common case you will need to load an MBK  
+file generated with Moonblaster. In this case, you can load the samplekit by  
 just doing the following:
 
 F$(0)="sampkit.mbk":?USR(31):?USR(78):?USR(32)
 
-If a disk error occurs, the function will return the appropriate error code, 
+If a disk error occurs, the function will return the appropriate error code,  
 and you can look for the number of bytes that have been read from the file in 
-P(7). If this number is greatert than 16K, only the first 16K of the 
-samplekit will have been transferred to the sample RAM. Otherwise, no data 
-will have been transferred to the sample RAM.
+P(7). If this number is greater than 16K, it means that only the first 16K of 
+the samplekit have been transferred to sample-RAM. If less, it means that no  
+data at all have been transferred to sample-RAM.
 
-If the player was not initialized or if no Music Module is found, this 
-functon will do nothing, but will not return error. If the whole samplekit is 
-successfully loaded, P(7) will not return 32824 but -32712, due to the BASIC 
+If player was not initialized or no Music Module was found, this functon      
+will do nothing, but will not return error. If the whole samplekit is
+successfully loaded, P(7) will contain -32712, not 32824, due to the BASIC 
 integer variables range (-32768 to 32767).
 
 
