@@ -619,8 +619,8 @@ If you unload NestorBASIC, the music playing at the moment stops automatically.
 
 Moonblaster 1.4 player fits in 4.5K, therefore the memory space from &H1200 to  
 &H3FFF of segment 5 remains free and can be used, for example, to store the data
-of a sound track to be played. This is not the case with Moonblaster Wave player
-which itself occupies the whole segment 5.
+of a tune to be played. This is not the case with Moonblaster Wave player which 
+itself occupies the whole segment 5.
 
 Moonblaster 1.4 tunes must be stored in a single segment, so its maximum  
 length is 16K. Moonblaster Wave music can be stored through consecutive 
