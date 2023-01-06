@@ -1440,7 +1440,7 @@ unpredictable.
 This function does not support partial readings: if there is no error, P(7) 
 will return the number of read bytes, that is, P(4)*512; but in case of error 
 P(7) will be always 0. If P(6)<>0, P(3) will be increased by the number of 
-readed bytes (P(7) or 0).
+bytes read (P(7) or 0).
 
 
 * Function 36: Read disk sectors to VRAM (S4)
@@ -2571,7 +2571,7 @@ integer variables range (-32768 to 32767).
 * Function 79: Load a Moonsound wavekit (S4)
 
 Input:	 P(0) = File number
-Output:  P(6):P(7) = Number of readed bytes
+Output:  P(6):P(7) = Number of bytes read
 
 This function loads from the specified open file a Moonsound wavekit, which 
 must be saved in USER format (otherwise, an error 15 is returned). 
