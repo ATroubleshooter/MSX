@@ -2556,15 +2556,15 @@ just doing the following:
 
 F$(0)="sampkit.mbk":?USR(31):?USR(78):?USR(32)
 
-If a disk error occurs, the function will return the appropriate error code,  
-and you can look for the number of bytes that have been read from the file in 
-P(7). If this number is greater than 16K, it means that only the first 16K of 
-the samplekit have been transferred to sample-RAM. If less, it means that no  
+If a disk error occurs, the function will return the appropriate error code,    
+and you can look for the number of bytes that have been read from the file in   
+P(7). If this number is greater than 16K, it means that only the first 16K of   
+the samplekit have been transferred to sample-RAM. If less, it means that no    
 data at all have been transferred to sample-RAM.
 
-If player was not initialized or no Music Module was found, this function     
+If player was not initialized or no Music Module was found, this function       
 will do nothing, but will not return error. If the whole samplekit is
-successfully loaded, P(7) will contain -32712, not 32824, due to the BASIC 
+successfully loaded, P(7) will contain -32712, not 32824, due to the BASIC      
 integer variables range (-32768 to 32767).
 
 
@@ -2573,27 +2573,27 @@ integer variables range (-32768 to 32767).
 Input:	 P(0) = File number
 Output:  P(6):P(7) = Number of bytes read
 
-This function loads from the specified open file a Moonsound wavekit, which 
+This function loads from the specified open file a Moonsound wavekit, which     
 must be saved in USER format (otherwise, an error 15 is returned). 
 
-Data will be read from a previously opened file. This feature allows you to 
-concatenate the wavekit with other useful data in a single data file: in 
-such case, just move the file pointer to the appropriate point, and execute 
-this function. However, in the most common case you will need to load a MWK 
-file generated with Moonblaster. In such case, you can load the wavekit by 
-just doing the following:
+Data will be read from a previously opened file. This feature allows you to     
+concatenate the wavekit with other useful data in a single data file: in such   
+a case, just move the file pointer to the appropriate point, and execute
+this function. However, in the most common case you will need to load a MWK     
+file generated with Moonblaster Wave editor. In this case, you can load the     
+wavekit simply by issuing the commands:
 
 F$(0)="wavkit.mwk":?USR(31):?USR(79):?USR(32)
 
-If a disk error occurs, the function will return the appropriate error code, 
-and you can look for the number of bytes that have been readed from the file 
-in P(6):P(7). In this case Moonsound sample RAM can have been modified, but 
-work area will not have been updated, so a partial wavekit load can't be 
+If a disk error occurs, the function will return the appropriate error code,    
+and you can look for the number of bytes that have been read from the file      
+in P(6):P(7). In this case Moonsound sample RAM can have been modified, but     
+work area will not have been updated, so a partial wavekit load can't be        
 supposed.
 
-If the Moonblaster Wave player was not initialized or if no Moonsound is 
-found, this functon will do nothing, but will not return error. If the whole 
-samplekit is successfully loaded, P(6):P(7) will contain the wavekit size 
+If the Moonblaster Wave player was not initialized or there's no Moonsound      
+in the system, this functon will do nothing, but will not return error. If the  
+whole samplekit is successfully loaded, P(6):P(7) will contain the wavekit size       
 (same as the file size if you just load a .MWK file).
 
 
