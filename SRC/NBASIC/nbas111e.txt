@@ -2635,7 +2635,7 @@ actually allocated. Whatever finally happens, this function will never return
 error.
 
 Under DOS 1, this function just modifies some NestorBASIC internal variables; 
-the value returned in P(1) is fixed and it is computed upon the start of
+the value returned in P(1) is fixed and it is computed upon the startup of    
 NestorBASIC. Under DOS 2, contrarywise, the actual segments allocation or 
 deallocation is performed using DOS 2 mapper support routines; in this case, the 
 value returned in P(1) is re-computed each time you call the function, and 
