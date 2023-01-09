@@ -2562,3 +2562,29 @@ InterNestor Suite.
 DOS 2 для работы с маппером; в этом случае, значение, возвращаемое в P(1),
 пересчитывается при каждом вызове функции, и зависит от того, сколько сегментов 
 было зарезервировано другими резидентными программами.
+
+10.11. ФУНКЦИИ ДЛЯ ВЗАИМОДЕЙСТВИЯ С NESTORMAN И INTERNESTOR SUITE/LITE
+
+* Функция 81: Проверка присутствия NestorMan
+	       и InterNestor Suite в ОЗУ
+
+Вход:    -
+Выход:   P(0) = 0 if NestorMan is not resident
+                1 if NestorMan is resident
+                3 if both NestorMan and InterNestor Suite are resident
+         P(1) = NestorMan segment of InterNestor Suite level 1 module
+         P(2) = NestorMan segment of InterNestor Suite level 2 module
+         P(3) = NestorMan segment of InterNestor Suite level 3 module
+         P(4) = NestorMan segment of InterNestor Suite level 4 module
+         P(5) = NestorMan segment number of NestorBASIC segment 4
+
+The value returned in P(5) will be valid only if P(0) is 1 or 3 at output. 
+This value is necessary if a data transfer between a NestorMan segment and a 
+NestorBASIC segment will be performed using segment 4 (common to both 
+programs) as an intermediate buffer, as described in section 9.2.
+
+The values returned in P(1) to P(4) will be valid only if P(0) is 3 at 
+output. It is not necessary to know the InterNestor Suite modules location in 
+order to execute their routines (using function 85), but it is necessary in 
+order to read and write the modules configuration constants and variables, as 
+detailed in section 9.3.
