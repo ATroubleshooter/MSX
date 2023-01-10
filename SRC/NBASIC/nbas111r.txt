@@ -2569,14 +2569,14 @@ DOS 2 для работы с маппером; в этом случае, зна�
 	       и InterNestor Suite в ОЗУ
 
 Вход:    -
-Выход:   P(0) = 0 if NestorMan is not resident
-                1 if NestorMan is resident
-                3 if both NestorMan and InterNestor Suite are resident
-         P(1) = NestorMan segment of InterNestor Suite level 1 module
-         P(2) = NestorMan segment of InterNestor Suite level 2 module
-         P(3) = NestorMan segment of InterNestor Suite level 3 module
-         P(4) = NestorMan segment of InterNestor Suite level 4 module
-         P(5) = NestorMan segment number of NestorBASIC segment 4
+Выход:   P(0) = 0 если NestorMan не присутствует
+                1 если NestorMan присутствует
+                3 если и NestorMan, и InterNestor Suite присутствуют
+         P(1) = NestorMan-сегмент модуля InterNestor Suite level 1
+         P(2) = NestorMan-сегмент модуля InterNestor Suite level 2
+         P(3) = NestorMan-сегмент модуля InterNestor Suite level 3
+         P(4) = NestorMan-сегмент модуля InterNestor Suite level 4
+         P(5) = Номер сегмента NestorMan сегмента 4 NestorBASIC-а
 
 The value returned in P(5) will be valid only if P(0) is 1 or 3 at output. 
 This value is necessary if a data transfer between a NestorMan segment and a 
