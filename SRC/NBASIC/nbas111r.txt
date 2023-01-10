@@ -2578,13 +2578,13 @@ DOS 2 для работы с маппером; в этом случае, зна�
          P(4) = NestorMan-сегмент модуля InterNestor Suite level 4
          P(5) = Номер сегмента NestorMan сегмента 4 NestorBASIC-а
 
-The value returned in P(5) will be valid only if P(0) is 1 or 3 at output. 
-This value is necessary if a data transfer between a NestorMan segment and a 
-NestorBASIC segment will be performed using segment 4 (common to both 
-programs) as an intermediate buffer, as described in section 9.2.
+Значение, возвращаемое в P(5) будет действительно, только если P(0) равно 1 или 
+3 на выходе. Это значение требуется для того, чтобы осуществлять обмен данными  
+между сегментом NestorMan и сегментом NestorBASIC, используя сегмент 4 (общий   
+для обейх программ) как промежуточный буфер, как описано в разделе 9.2.
 
-The values returned in P(1) to P(4) will be valid only if P(0) is 3 at 
-output. It is not necessary to know the InterNestor Suite modules location in 
-order to execute their routines (using function 85), but it is necessary in 
-order to read and write the modules configuration constants and variables, as 
-detailed in section 9.3.
+Значения, возвращаемые в P(1) - P(4), будут действительны только если P(0) равно
+3 на выходе. Не обязательно знать расположение модулей InterNestor Suite, чтобы 
+вызывать его подпрограммы (используя функцию 85), но это необходимо знать, чтобы
+читать и записывать конфигурационные константанты и переменные модулей, как  
+описано в разделе 9.3.
