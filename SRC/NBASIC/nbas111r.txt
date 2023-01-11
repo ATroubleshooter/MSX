@@ -2606,17 +2606,16 @@ DOS 2 для работы с маппером; в этом случае, зна�
 			 P(13) = Флаг Cy (-1 если установлен, иначе 0)
 			 P(14) = Флаг Z (-1 если установлен, иначе 0)
 
-This function executes the NestorMan function specified in P(0) using then 
-indirect calling method, that is, using the extended BIOS hook. It is 
-therefore equivalent to the execution of function 58 having established 
-previously P(1)=&HFFCA, P(3)=Function+256*B, and P(4)=&H2202.
+Эта функция вызывает функцию NestorMan, указанную в P(0), посредством метода    
+непрямого вызова, то есть, используя hook расширенного BIOS. Таким образом, это 
+равносильно использованию функции 58 с установленными предварительно P(1)=&HFFCA,
+P(3)=Функция+256*B, и P(4)=&H2202.
 
-An error code -1 will be returned by this function if NestorMan is not 
-resident. Note however that it does not check if the specified function does 
-really exist in NestorMan.
+Функцией будет возвращен код ошибки -1, если NestorMan отсутствует. Отметьте,   
+тем не менее, что не производится проверка, существует ли действительно в
+NestorMan указанная функция.
 
-See also the function 58 description for considerations about the output 
-values of P(12) to P(14).
+См. также описание функции 58 для понимания выходных значений P(12) - P(14).    
 
-Section 9 describes some procedures for exachanging data between NestorMan 
-and NestorBASIC.
+Раздел 9 демонстрирует некоторые техники для обмена данными между NestorMan и   
+NestorBASIC.
