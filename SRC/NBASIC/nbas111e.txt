@@ -2686,7 +2686,7 @@ Output:  P(2) to P(12) = Output registers of the function,
 			 P(13) = Cy flag (-1 if set, 0 otherwise)
 			 P(14) = Z flag (-1 if set, 0 otherwise)
 
-This function executes the NestorMan function specified in P(0) using then 
+This function executes the NestorMan function specified in P(0) using
 indirect calling method, that is, using the extended BIOS hook. It is 
 therefore equivalent to the execution of function 58 having established 
 previously P(1)=&HFFCA, P(3)=Function+256*B, and P(4)=&H2202.
