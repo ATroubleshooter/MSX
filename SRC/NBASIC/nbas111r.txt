@@ -2619,3 +2619,29 @@ NestorMan указанная функция.
 
 Раздел 9 демонстрирует некоторые техники для обмена данными между NestorMan и   
 NestorBASIC.
+
+* Функция 83: Передача блока данных из сегмента NestorMan
+	      в сегмент NestorBASIC
+
+Вход:	 P(0) = Сегмент-источник NestorMan
+	 P(1) = Source start address
+	 P(2) = NestorBASIC destination segment
+	 P(3) = Destination start address
+	 P(4) = Data length
+	 P(5)<> 0 -> Autoincrement of P(1)
+	 P(6)<> 0 -> Autoincrement of P(3)
+Выход:   P(1) = P(1) + P(4) if P(5)<>0
+	 P(3) = P(3) + P(4) if P(6)<>0
+
+This function is identical to function 10, except that the value passed on 
+P(0) refers to a NestorMan segment. As in the case of function 10, P(3)+P(4) 
+must be lower than &H4000, a VRAM segment or the segment 255 may be specified 
+in P(2), and an error -1 is returned if any of the specified segments does 
+not exist.
+
+This function has one limitation: it is not possible to use it specifying 
+segment 1 as the NestorBASIC destination segment. However, this will normally 
+not be a problem, because segment 1 contains the TurboBASIC compiler, and 
+usually one does not want to modify its contents. If anyway a transfer to 
+segment 1 is needed, you must first copy the data to any other segment as an 
+itermediate step, for example segment 4.
