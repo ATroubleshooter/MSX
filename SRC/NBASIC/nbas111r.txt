@@ -2623,25 +2623,25 @@ NestorBASIC.
 * Функция 83: Передача блока данных из сегмента NestorMan
 	      в сегмент NestorBASIC
 
-Вход:	 P(0) = Сегмент-источник NestorMan
-	 P(1) = Source start address
-	 P(2) = NestorBASIC destination segment
-	 P(3) = Destination start address
-	 P(4) = Data length
-	 P(5)<> 0 -> Autoincrement of P(1)
-	 P(6)<> 0 -> Autoincrement of P(3)
-Выход:   P(1) = P(1) + P(4) if P(5)<>0
-	 P(3) = P(3) + P(4) if P(6)<>0
+Вход:	 P(0) = NestorMan-сегмент источника
+	 P(1) = Начальный адрес источника
+	 P(2) = NestorBASIC-сегмент приёмника
+	 P(3) = Начальный адрес приёмника
+	 P(4) = Длина блока данных
+	 P(5)<> 0 -> Автоинкремент P(1)
+	 P(6)<> 0 -> Автоинкремент P(3)
+Выход:   P(1) = P(1) + P(4) если P(5)<>0
+	 P(3) = P(3) + P(4) если P(6)<>0
 
-This function is identical to function 10, except that the value passed on 
-P(0) refers to a NestorMan segment. As in the case of function 10, P(3)+P(4) 
-must be lower than &H4000, a VRAM segment or the segment 255 may be specified 
-in P(2), and an error -1 is returned if any of the specified segments does 
-not exist.
+Эта функция идентична функции 10, кроме того, что значение, передаваемое через  
+P(0) соотносится с сегментом NestorMan. Как и в случае с функцией 10, P(3)+P(4) 
+должно быть меньше &H4000, в P(2) может быть указан сегмент VRAM или 255-й      
+сегмент, и ошибка -1 будет выдана, если любой из указанных сегментов не         
+существует.
 
-This function has one limitation: it is not possible to use it specifying 
-segment 1 as the NestorBASIC destination segment. However, this will normally 
-not be a problem, because segment 1 contains the TurboBASIC compiler, and 
-usually one does not want to modify its contents. If anyway a transfer to 
-segment 1 is needed, you must first copy the data to any other segment as an 
-itermediate step, for example segment 4.
+У данной функции есть одно ограничение: её нельзя использовать, указав сегмент 1
+в качестве NestorBASIC-сегмента приёмника. Как правило, это не является
+проблемой, потому что 1-й сегмент содержит компилятор X-BASIC, и обычно никому  
+не нужно менять его содержимое. Если, тем не менее, передача в 1-й сегмент
+необходима, Вам придется сначала скопировать данные в какой-то сегмент, в
+качестве промежуточного шага - например в сегмент 4.
