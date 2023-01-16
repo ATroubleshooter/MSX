@@ -2778,7 +2778,7 @@ Using this function it is possible to execute any routine of any of the
 InterNestor Suite modules. To read or write the modules configuration 
 constants and variables it is necessary first to obtain the NestorMan segment 
 numbers of the modules using function 81, and then use any of the techniques 
-described in section 9.2 for exchanging data between NetorBASIC and 
+described in section 9.2 for exchanging data between NestorBASIC and 
 NestorMan.
 
 This function will return an error -1 if InterNestor Suite is not resident, 
