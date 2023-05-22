@@ -2999,8 +2999,8 @@ as some of its internal variables,  which can be useful for user routines. In
 this section, the location of those routines and variables and their functioning
 is explained.
 
-None of these routines modify the interrupts state, except PUTSLOT0, which
-disables interrupts before finishing.
+None of these routines modify the interrupts state, except PUTSLOT0, which      
+returns with interrupts disabled.
 
 NOTE: Logical segment 255 refers always to the memory switched to pages 2 
 and 3 when the segment is referred to. While an user machine code routine or 
