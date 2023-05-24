@@ -3002,11 +3002,11 @@ is explained.
 None of these routines modify the interrupts state, except PUTSLOT0, which      
 returns with interrupts disabled.
 
-NOTE: Logical segment 255 refers always to the memory switched to pages 2 
-and 3 when the segment is referred to. While an user machine code routine or 
-an user interrupt routine is being executed, page 2 DOES NOT contain the 
-BASIC main RAM segment, but the segment of the routine itself. So, to 
-actually convert the segment 255 to the appropriate BASIC segment, do the 
+NOTE: Logical segment 255 always refers to the memory connected to pages 2 and 3
+at the time when the segment is being accessed. When a user machine code routine
+or user interrupt routine is being executed, page 2 DOES NOT contain the        
+BASIC main RAM segment, but the segment of the routine itself. So, to actually  
+convert the segment 255 to the corresponding BASIC segment number, do the       
 following:
 
 	ld	hl,address
