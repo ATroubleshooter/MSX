@@ -3239,7 +3239,7 @@ Registers: AF, HL, DE
 
 &H4143: FILLVR
 
-Fills a VRAM zone with un byte.
+Fills VRAM area with a byte.
 
 Input:	   VRAM address previously set with SET_WR
 	   BC = Zone length
@@ -3250,7 +3250,7 @@ Registers: -
 
 &H4146: BLK_CLS
 
-Clears the VRAM zone for the SCREEN 0 blink mode.
+Clears the VRAM area for the SCREEN 0 blink mode.
 
 Input:	   -
 Output:    -
