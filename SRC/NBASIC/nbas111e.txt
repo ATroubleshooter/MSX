@@ -3242,7 +3242,7 @@ Registers: AF, HL, DE
 Fills VRAM area with a byte.
 
 Input:	   VRAM address previously set with SET_WR
-	   BC = Zone length
+	   BC = Area size
 	   A  = Byte
 Output:    -
 Registers: -
@@ -3250,7 +3250,7 @@ Registers: -
 
 &H4146: BLK_CLS
 
-Clears the VRAM area for the SCREEN 0 blink mode.
+Clears the VRAM area to be used for SCREEN 0 blink mode.
 
 Input:	   -
 Output:    -
