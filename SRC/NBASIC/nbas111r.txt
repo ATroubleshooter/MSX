@@ -3114,3 +3114,29 @@ OKFF:	;
 	 C  = Приоритет эффекта, который звучит, или последнего, который звучал
 	 D  = Наибольший номер эффекта, который существует
 	 E  = Максимальная громкость
+
+
+&H4161: GINFOMUS
+
+Выдает информацию о музыке, которая проигрывается, и о присутствии
+плеера Moonblaster.
+
+Вход:	 -
+Выход:   Cy = 1 -> No hay ning£n reproductor cargado,
+		   el resto de resultados no son v lidos.
+	 Cy = 0 -> Hay un reproductor cargado.
+		   El resto de resultados son v lidos
+		   si hay una m£sica sonando (consultar INT_DATA).
+	 A  = Segmento l¢gico de la m£sica que suena
+	 HL = Direcci¢n inicial de la m£sica que suena
+	 B  = Chips presentes:
+	      bit 0 = 1 -> MSX-MUSIC presente
+	      bit 1 = 1 -> MSX-AUDIO presente
+	      bit 2 = 2 -> OPL4 presente
+	 C  = Chips activos:
+	      bit 0 = 1 -> MSX-MUSIC activo
+	      bit 1 = 1 -> MSX-AUDIO activo
+	      bit 2 = 2 -> OPL4 activo
+	 D  = Posici¢n
+	 E  = Paso actual en la posici¢n (0 a 15)
+	 IXl= 255 si la m£sica est  pausada
