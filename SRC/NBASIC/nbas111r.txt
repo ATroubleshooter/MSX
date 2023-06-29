@@ -3122,8 +3122,8 @@ OKFF:	;
 плеера Moonblaster.
 
 Вход:	 -
-Выход:   Cy = 1 -> No hay ning£n reproductor cargado,
-		   el resto de resultados no son v lidos.
+Выход:   Cy = 1 -> Ни один плеер не загружен,
+		   остальные результаты не действительны.
 	 Cy = 0 -> Hay un reproductor cargado.
 		   El resto de resultados son v lidos
 		   si hay una m£sica sonando (consultar INT_DATA).
