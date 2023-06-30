@@ -3124,19 +3124,19 @@ OKFF:	;
 Вход:	 -
 Выход:   Cy = 1 -> Ни один плеер не загружен,
 		   остальные результаты не действительны.
-	 Cy = 0 -> Hay un reproductor cargado.
-		   El resto de resultados son v lidos
-		   si hay una m£sica sonando (consultar INT_DATA).
-	 A  = Segmento l¢gico de la m£sica que suena
-	 HL = Direcci¢n inicial de la m£sica que suena
-	 B  = Chips presentes:
-	      bit 0 = 1 -> MSX-MUSIC presente
-	      bit 1 = 1 -> MSX-AUDIO presente
-	      bit 2 = 2 -> OPL4 presente
-	 C  = Chips activos:
-	      bit 0 = 1 -> MSX-MUSIC activo
-	      bit 1 = 1 -> MSX-AUDIO activo
-	      bit 2 = 2 -> OPL4 activo
+	 Cy = 0 -> Плеер загружен.
+		   Остальные результаты действительны
+		   если проигрывается музыка (проверьте INT_DATA).
+	 A  = Логический сегмент музыки, которая воспроизводится
+	 HL = Адрес начала музыки, которая воспроизводится
+	 B  = Присутствующие звуковые устройства:
+	      bit 0 = 1 -> MSX-MUSIC найден
+	      bit 1 = 1 -> MSX-AUDIO найден
+	      bit 2 = 2 -> OPL4 найден
+	 C  = Активные звуковые устройства:
+	      bit 0 = 1 -> MSX-MUSIC активен
+	      bit 1 = 1 -> MSX-AUDIO активен
+	      bit 2 = 2 -> OPL4 активен
 	 D  = Posici¢n
 	 E  = Paso actual en la posici¢n (0 a 15)
 	 IXl= 255 si la m£sica est  pausada
