@@ -1,3 +1,7 @@
+This fork had been created mainly to translate NestorBASIC documentation into Russian.
+Nicely formatted version of this document located [here](https://sysadminmosaic.ru/msx/nestor_basic/nestor_basic),
+I kindly appreciate Alexey Sysoev's help with making it.
+
 ## What is NestorBASIC? ##
 
 NestorBASIC is a set of machine code routines, integrated in a single file. It is intended to be used in MSX-BASIC programs. Without losing Turbo-BASIC compatibility, NestorBASIC gives you the following capabilities:
