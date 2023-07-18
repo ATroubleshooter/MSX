@@ -1,4 +1,5 @@
-This fork had been created mainly to translate NestorBASIC documentation into Russian.
+This fork had been created with the main goal of translating NestorBASIC documentation into Russian. Also, necessary
+corrections to the English version were made.
 Nicely formatted version of this document located [here](https://sysadminmosaic.ru/msx/nestor_basic/nestor_basic),
 I kindly appreciate Alexey Sysoev's help with making it.
 
